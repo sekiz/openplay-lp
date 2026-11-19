@@ -1,0 +1,9 @@
+---
+// Hero ile ürün penceresi arasındaki kayan özellik bandı. Liste iki kez basılır; ikincisi ekran okuyuculardan gizlidir.
+const { t } = Astro.props;
+---
+<div class="mq" aria-label={t.items.join(', ')}>
+  <div class="mq-track" aria-hidden="true">
+    {[0, 1].map(() => <ul>{t.items.map((w) => <li>{w}</li>)}</ul>)}
+  </div>
+</div>

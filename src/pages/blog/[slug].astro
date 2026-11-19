@@ -1,0 +1,10 @@
+---
+import BlogPost from '../../components/blog/BlogPost.astro';
+import { defaultLocale } from '../../i18n/index.js';
+import { getPosts } from '../../lib/blog.js';
+export async function getStaticPaths() {
+  return (await getPosts(defaultLocale)).map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+const { post } = Astro.props;
+---
+<BlogPost lang={defaultLocale} post={post} />

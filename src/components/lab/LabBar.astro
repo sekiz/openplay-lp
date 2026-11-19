@@ -1,0 +1,15 @@
+---
+// Prototip sayfalarının üst çubuğu: logo, yön değiştirici, dil.
+import LangSwitch from '../LangSwitch.astro';
+import { localePath } from '../../i18n/index.js';
+const { t, lang, dir } = Astro.props;
+---
+<header class="lbar">
+  <a class="lbar-logo" href={localePath(lang)} aria-label={t.back}><svg viewBox="0 0 44 28"><path fill="currentColor" d="M1 2q0-2 2-1l17 11q2 1 0 3L3 26q-2 1-2-1zm21 0q0-2 2-1l17 11q2 1 0 3L24 26q-2 1-2-1z" /></svg>OpenPlay</a>
+  <nav class="lbar-dir" aria-label={t.title}>
+    <a href={localePath(lang, '/lab/a/')} aria-current={dir === 'a' ? 'page' : undefined}>{t.dirA}</a>
+    <a href={localePath(lang, '/lab/b/')} aria-current={dir === 'b' ? 'page' : undefined}>{t.dirB}</a>
+  </nav>
+  <span class="lbar-note">{t.note}</span>
+  <LangSwitch lang={lang} path={`/lab/${dir}/`} />
+</header>

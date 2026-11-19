@@ -1,0 +1,79 @@
+---
+const { t } = Astro.props;
+---
+<section class="eco">
+<div class="wrap">
+  <div class="head c"><div class="eyebrow"><i></i>{t.economy_and_content}</div><h2>{t.follow_an_item_from_the}<br><em>{t.to_the_inventory}</em></h2><p class="sub">{t.define_the_item_once_it}</p></div>
+  <div class="trio threaded" style="margin-top:84px">
+    <div class="ec">
+      <div class="stg"><span class="sn">1</span>{t.define_in_the_catalog}</div>
+      <div class="top">{t.item_catalog}<small>{t.sample_screen}</small></div>
+      <div class="bd">
+        <div class="irow"><span class="obj" data-node="e1"><svg><use href="#pusula"/></svg></span><span><b>{t.sprint_badge}</b><small>{t.id_sprint_badge}</small></span></div>
+        <div class="kv">
+          <div>{t.rarity}<b><span class="rar n">{t.rare}</span></b></div>
+          <div>{t.type}<b>{t.badge_not_stackable}</b></div>
+          <div>{t.store_price}<b><i class="coin"></i>{t.n450_coins}</b></div>
+          <div>{t.content_group}<b>{t.coast_stage}</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="ec">
+      <div class="stg"><span class="sn">2</span>{t.attach_to_a_reward}</div>
+      <div class="top">{t.reward_coast_stage_finish}<small>{t.active}</small></div>
+      <div class="bd">
+        <div class="irow"><span class="obj" data-node="e2"><svg><use href="#pusula"/></svg></span><span><b>{t.n1_sprint_badge}</b><small>{t.id_sprint_badge}</small></span></div>
+        <div class="kv">
+          <div>{t.currency_reward}<b><i class="coin"></i>{t.n120_coins}</b></div>
+          <div>{t.condition}<b>{t.when_the_stage_is_completed}</b></div>
+          <div>{t.repeat}<b>{t.once_per_player}</b></div>
+          <div>{t.granted}<b>{t.n214_players}</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="ec">
+      <div class="stg"><span class="sn">3</span>{t.see_it_on_the_player}</div>
+      <div class="top">{t.adas_inventory}<small>{t.time_event}</small></div>
+      <div class="bd">
+        <div class="irow"><span class="obj" data-node="e3"><svg><use href="#pusula"/></svg></span><span><b>{t.sprint_badge}</b><small>{t.reward_coast_stage_finish_2}</small></span></div>
+        <div class="kv">
+          <div>{t.quantity}<b>1</b></div>
+          <div>{t.coin_balance}<b><i class="coin"></i>{t.n1_250_1_370}</b></div>
+          <div>{t.gem_balance}<b><i class="gem"></i>24</b></div>
+          <div>{t.character}<b>{t.driver_ada}</b></div>
+        </div>
+      </div>
+    </div>
+    <svg class="thread"></svg>
+  </div>
+
+  <div class="three">
+    <div class="tc">
+      <h3>{t.store}</h3>
+      <p>{t.edit_offers_and_prices_in}</p>
+      <div class="mini">
+        <div class="row"><span class="offer"><span class="sq"><svg><use href="#pusula"/></svg></span><span><b>{t.sprint_badge}</b><small>{t.single_item}</small></span></span><span class="price"><i class="coin"></i>450</span></div>
+        <div class="row"><span class="offer"><span class="sq"><svg><use href="#takim"/></svg></span><span><b>{t.service_pack}</b><small>{t.n5_repair_kits_1_set}</small></span></span><span class="price"><i class="gem"></i>12</span></div>
+      </div>
+    </div>
+    <div class="tc">
+      <h3>{t.purchases}</h3>
+      <p>{t.an_in_app_purchase_is}</p>
+      <div class="mini">
+        <div class="row"><span><b>{t.gem_pouch_20}</b><small>{t.in_app_purchase}</small></span><span class="okl"><svg class="ic" style="width:13px;height:13px"><use href="#i-check"/></svg>{t.verified}</span></div>
+        <div class="row"><span>{t.player}</span><b>Ada</b></div>
+        <div class="row"><span>{t.credited_to_balance}</span><span class="pos">{t.n20_gems}</span></div>
+      </div>
+    </div>
+    <div class="tc">
+      <h3>{t.balance}</h3>
+      <p>{t.every_credit_and_debit_appears}</p>
+      <div class="mini">
+        <div class="row"><span><b>{t.coast_stage_finish}</b><small>{t.reward_2_32_pm}</small></span><span class="pos">{t.n120_coins_2}</span></div>
+        <div class="row"><span><b>{t.rain_tire_2}</b><small>{t.store_yesterday}</small></span><span class="neg">{t.n300_coins}</span></div>
+        <div class="row"><span><b>{t.service_pack}</b><small>{t.store_november_3}</small></span><span class="neg">{t.n12_gems}</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

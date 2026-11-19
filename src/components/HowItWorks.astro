@@ -1,0 +1,38 @@
+---
+const { t } = Astro.props;
+---
+<section id="how-it-works" class="how">
+<div class="wrap">
+  <div class="head c"><div class="eyebrow"><i></i>{t.how_it_works}</div><h2>{t.your_first_player_in_the}<br><em>{t.in_three_steps}</em></h2><p class="sub">{t.one_game_one_sdk_one}</p></div>
+  <div class="steps">
+    <div class="card step">
+      <div class="ui"><div class="list">
+        <div class="o"><span class="g"><svg><use href="#pusula"/></svg></span><span>{t.coast_rally}<small>{t.slug_coast_rally}</small></span><span class="st">{t.live}</span></div>
+        <div class="o"><span class="g b"><svg><use href="#rozet"/></svg></span><span>{t.mountain_trail}<small>{t.slug_mountain_trail}</small></span><span class="st d">{t.draft}</span></div>
+        <div class="o add">{t.new_game}</div>
+      </div></div>
+      <div class="tx"><div class="k"><span class="sn">1</span><h3>{t.create_your_game}</h3></div><p>{t.create_a_game_under_your}</p></div>
+    </div>
+    <div class="card step">
+      <div class="ui" style="padding:12px"><div class="code">
+        <div class="ct"><span>Unity</span><span class="on">TypeScript</span><span class="tag">{t.sample_code}</span></div>
+<pre><span class="k">import</span> &#123; OpenPlay &#125; <span class="k">from</span> <span class="s">"@openplay/sdk"</span>;
+
+<span class="k">const</span> op = <span class="k">new</span> <span class="f">OpenPlay</span>(&#123;
+  game: <span class="s">{t.code_game_slug}</span>,
+&#125;);
+<span class="k">await</span> op.auth.<span class="f">signInAsGuest</span>();</pre>
+      </div></div>
+      <div class="tx"><div class="k"><span class="sn">2</span><h3>{t.pick_your_sdk_and_connect}</h3></div><p>{t.unity_or_typescript_the_player}</p></div>
+    </div>
+    <div class="card step">
+      <div class="ui"><div class="list">
+        <div class="o" style="background:var(--golds)"><span>{t.new_player_ply_7f3a}<small>{t.guest_sign_in_typescript_sdk}</small></span><span class="tm" style="margin-left:auto">{t.n1_min}</span></div>
+        <div class="o"><span>{t.session_started}<small>{t.coast_rally_web}</small></span><span class="tm" style="margin-left:auto">{t.n1_min}</span></div>
+        <div class="o"><span>{t.cloud_save_written}<small>{t.save_1_2_kb}</small></span><span class="tm" style="margin-left:auto">{t.just_now}</span></div>
+      </div></div>
+      <div class="tx"><div class="k"><span class="sn">3</span><h3>{t.see_the_result_in_the}</h3></div><p>{t.the_player_the_session_and}</p></div>
+    </div>
+  </div>
+</div>
+</section>

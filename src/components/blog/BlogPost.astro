@@ -1,0 +1,65 @@
+---
+// Tek yazı sayfası. Başta "öne çıkanlar" özeti, sonda SSS; ikisi de yapılandırılmış veriye yazılır.
+import Base from '../../layouts/Base.astro';
+import BlogHeader from './BlogHeader.astro';
+import Closing from '../Closing.astro';
+import '../../styles/blog.css';
+import { render } from 'astro:content';
+import { useTranslations, localeTags, localePath, defaultLocale } from '../../i18n/index.js';
+import { getPosts, getTranslations } from '../../lib/blog.js';
+import { organization, article, faqPage, breadcrumbs } from '../../lib/seo.js';
+const { lang, post } = Astro.props;
+const t = useTranslations(lang), b = t.blog, d = post.data;
+const { Content, headings } = await render(post.entry);
+const toc = headings.filter((h) => h.depth === 2);
+const path = `/blog/${post.slug}/`;
+const langs = await getTranslations(post.slug);
+const related = (await getPosts(lang)).filter((p) => p.slug !== post.slug).slice(0, 3);
+const fmt = (x) => x.toLocaleDateString(localeTags[lang], { year: 'numeric', month: 'long', day: 'numeric' });
+const jsonld = [organization(Astro.site), article(Astro.site, post, lang, '/og.jpg'), breadcrumbs(Astro.site, [[b.home, localePath(lang)], [b.navLabel, localePath(lang, '/blog/')], [d.title, post.canonicalPath]])];
+if (d.faq.length) jsonld.push(faqPage(d.faq));
+---
+<Base lang={lang} title={`${d.title} · OpenPlay`} description={d.description} path={path} canonicalPath={post.canonicalPath} alternates={langs} ogType="article"
+  published={d.pubDate.toISOString()} modified={(d.updatedDate ?? d.pubDate).toISOString()} jsonld={jsonld}>
+  <div class="bl-top post">
+    <BlogHeader t={t} lang={lang} path={path} />
+    <div class="bw bp-head">
+      <nav class="crumb2" aria-label="Breadcrumb"><a href={localePath(lang, '/blog/')}>{b.back}</a></nav>
+      <p class="tags">{d.tags.join(', ')}</p>
+      <h1>{d.title}</h1>
+      <p class="bl-lede">{d.description}</p>
+      <p class="bl-meta"><span>{b.by} {d.author === 'OpenPlay Team' ? b.team : d.author}</span><time datetime={d.pubDate.toISOString()}>{fmt(d.pubDate)}</time><span>{post.minutes} {b.minRead}</span></p>
+    </div>
+  </div>
+  <main class="bp-main">
+    <div class="bw bp-grid">
+      <aside class="bp-toc" aria-label={b.toc}>
+        <p>{b.toc}</p>
+        <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+      </aside>
+      <article class="bp-body" lang={localeTags[post.contentLang]}>
+        {post.fallback && <p class="bp-note" lang={localeTags[lang]}>{b.onlyEn}</p>}
+        <section class="bp-key" aria-labelledby="key">
+          <h2 id="key">{b.takeaways}</h2>
+          <ul>{d.takeaways.map((k) => <li>{k}</li>)}</ul>
+        </section>
+        <div class="prose"><Content /></div>
+        {d.faq.length > 0 && (
+          <section class="bp-faq" aria-labelledby="faq">
+            <h2 id="faq">{b.faq}</h2>
+            {d.faq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+          </section>
+        )}
+        <aside class="bp-cta"><div><h2>{b.ctaTitle}</h2><p>{b.ctaBody}</p></div><a class="btn p" href={`${localePath(lang)}#developers`}>{b.ctaButton}</a></aside>
+      </article>
+    </div>
+    <div class="bw bp-rel">
+      <h2>{b.related}</h2>
+      <ul>{related.map((p) => <li><a href={p.url}><span class="tags">{p.data.tags.join(', ')}</span><b>{p.data.title}</b><span class="bl-meta"><span>{p.minutes} {b.minRead}</span></span></a></li>)}</ul>
+    </div>
+  </main>
+  <script>
+    import '../../scripts/wordmark.js';
+  </script>
+  <Closing t={t.closing} lang={lang} path={path} />
+</Base>

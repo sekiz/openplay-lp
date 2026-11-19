@@ -1,0 +1,87 @@
+/* Bölüm hareketleri: iz çizgisi, kaydırma, skor tablosu, sohbet. */
+.stick{position:fixed;left:0;right:0;top:14px;z-index:50;transform:translateY(-140%);transition:transform .6s var(--e);pointer-events:none}
+.stick.show{transform:none;pointer-events:auto}
+.stick nav{backdrop-filter:blur(14px)}
+
+/* vitrin (ürün penceresi) */
+#platform{padding:104px 0 60px}
+#platform .frame{margin:0 auto}
+.replay{font:500 12px "Inter Variable",sans-serif;color:var(--ink2);background:#fff;border:0;box-shadow:inset 0 0 0 1px var(--line);border-radius:7px;padding:4px 10px;cursor:pointer;display:flex;gap:6px;align-items:center;margin-left:auto;margin-right:10px}
+.replay svg{width:12px;height:12px}
+.js .frame .reward{transition:opacity .4s var(--e),transform .6s var(--spring)}
+.js .frame:not(.s1) .reward{opacity:0;transform:translateX(-50%) translateY(14px) scale(.9)}
+.tr .n,.tr b{transition:all .35s var(--e)}
+.tr.on .n{animation:pop .5s var(--spring)}
+@keyframes pop{0%{transform:scale(.6)}100%{transform:scale(1)}}
+.js .tr:not(.on){opacity:.45}
+.tr{transition:opacity .4s}
+.tb .r{transition:background .6s,box-shadow .6s}
+.js .new{display:inline-block;transform:scale(0);transition:transform .5s var(--spring)}
+.js .hl .new{transform:scale(1)}
+.js .tb .r.pend .nm,.js .tb .r.pend .rar,.js .tb .r.pend .src,.js .tb .r.pend .tm,.js .tb .r.pend .it{opacity:0}
+.tb .r>*{transition:opacity .5s var(--e)}
+.bumpn{animation:bumpn .6s var(--spring)}
+@keyframes bumpn{0%{transform:scale(1)}40%{transform:scale(1.180);color:var(--ok)}100%{transform:scale(1)}}
+.js .act .ar{opacity:0;transform:translateY(6px);transition:all .5s var(--e)}
+.js .s4 .act .ar{opacity:1;transform:none}
+.js .s4 .act .ar+.ar{transition-delay:.15s}
+
+/* iz çizgisi */
+.th .rv{stroke-dashoffset:1;transition:stroke-dashoffset 1s cubic-bezier(.6,0,.2,1)}
+.th.go .rv{stroke-dashoffset:0}
+.th circle{opacity:0;transition:opacity .3s}
+.th.go circle{opacity:1}
+.th.go circle+circle{transition-delay:.85s}
+
+/* kaydırmayla beliren öğeler */
+.js [data-a]{opacity:0;transform:translateY(22px)}
+.js [data-a].in{opacity:1;transform:none;transition:opacity .8s var(--e),transform .8s var(--e);transition-delay:calc(var(--i,0)*90ms)}
+.card,.ec,.tc{transition:box-shadow .3s,translate .3s var(--e)}
+.steps .card:hover,.bento .card:hover,.sdk:hover{translate:0 -4px;box-shadow:var(--sh2),0 24px 40px -24px rgba(16,14,12,.3)}
+.paths a{transition:padding .25s var(--e)}
+.paths a:hover{padding-left:6px}
+.paths a:hover>svg{color:var(--acc);transform:translateX(3px)}
+.paths a>svg{transition:transform .25s var(--e)}
+.dg li{transition:color .2s,padding .2s var(--e);cursor:default}
+.dg li:hover{color:var(--acc);padding-left:4px}
+.btn{transition:transform .25s var(--spring),box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+
+/* skor tablosu ve sohbet */
+.lb .r{transition:transform .8s var(--e),background .5s}
+.lb .r small{transition:opacity .5s .5s}
+.js .lb:not(.done) .r small{opacity:0}
+.js .chat .msg,.js .chat .sys{opacity:0;transform:translateY(8px) scale(.97);transition:all .5s var(--spring)}
+.js .chat.in .msg,.js .chat.in .sys{opacity:1;transform:none}
+.js .toast{transform:translateY(-16px);opacity:0;transition:all .6s var(--spring)}
+.js .lock.in .toast{transform:none;opacity:1}
+.js .lock.in .toast.dim{opacity:.55;transition-delay:0s}
+.js .lock.in .toast:not(.dim){transition-delay:1.100s}
+.bar i{transition:width 1.200s var(--e) .3s}
+.js .profile:not(.in) .bar i{width:0!important}
+.js .tline .e{opacity:0;transform:translateX(-8px);transition:all .5s var(--e)}
+.js .profile.in .tline .e{opacity:1;transform:none}
+.js .profile.in .tline .e:nth-child(2){transition-delay:.25s}.js .profile.in .tline .e:nth-child(3){transition-delay:.5s}
+.cbox .obj{animation:float 5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:none}50%{transform:translateY(-8px) rotate(4deg)}}
+.code pre .cur{display:inline-block;width:7px;height:1.100em;background:#FFD58A;vertical-align:-2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important}
+}
+
+.sdkbar{background:#fff;border-bottom:1px solid var(--line);font-size:14px}
+.sdkbar .wrap{width:1296px;height:64px;display:flex;align-items:center;gap:26px}
+.sdkbar .lb0{color:var(--ink2)}
+.sdkbar a{font-weight:650;color:#171512;display:flex;gap:6px;align-items:center}
+.sdkbar a svg{width:11px;height:11px}
+.rec{margin-left:auto;display:flex;align-items:center;gap:12px;padding:6px 14px 6px 8px;border-radius:10px;background:#FFF3DD;transition:opacity .25s,transform .35s var(--spring)}
+.rec.sw{opacity:0;transform:translateY(6px)}
+.rec img{width:30px;height:30px}
+.rec small{display:block;font-size:11.500px;color:#6A655C;line-height:1.2}
+.rec b{font-size:13.500px;font-weight:650}
+.rec em{font-style:normal;font-size:13px;font-weight:600;padding-left:12px;border-left:1px solid #E3D2AE}
+.game img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.game:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,14,12,.55),rgba(16,14,12,0) 30%,rgba(16,14,12,0) 70%,rgba(16,14,12,.6))}
+.game .hud,.game .reward,.game .gname{z-index:2}

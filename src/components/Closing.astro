@@ -1,0 +1,27 @@
+---
+import LangSwitch from './LangSwitch.astro';
+import { localePath } from '../i18n/index.js';
+const { t, lang } = Astro.props;
+---
+<div class="close">
+<div class="wrap">
+  <div class="cbox"><img class="cbg" src="/assets/race-bg.webp" alt="" loading="lazy" />
+    <div class="obj"><svg><use href="#pusula"/></svg></div>
+    <h2>{t.connect_your_game}<br><em>{t.see_your_first_player_in}</em></h2>
+    <p>{t.the_quick_start_guide_takes}</p>
+    <div class="cta"><a class="btn p">{t.quick_start}</a><a class="btn s">Unity</a><a class="btn s">TypeScript</a></div>
+    <div class="alt"><a class="tl">{t.all_documentation}<svg><use href="#i-chev"/></svg></a><a class="tl">{t.architecture_guide}<svg><use href="#i-chev"/></svg></a></div>
+  </div>
+  <footer>
+    <div>
+      <a class="logo" style="color:var(--ink)"><svg><use href="#mark"/></svg>OpenPlay</a>
+      <p class="note">{t.the_game_and_panel_screens}</p>
+    </div>
+    <ul><li><LangSwitch lang={lang} path={Astro.props.path ?? '/'} /></li><li><a href={localePath(lang, '/blog/')}>{t.blog}</a></li><li>{t.platform}</li><li>{t.documentation}</li><li>Unity SDK</li><li>TypeScript SDK</li><li>GitHub</li></ul>
+  </footer>
+  <div class="wordmark" aria-hidden="true">
+    <div>{'OpenPlay'.split('').map((c, i) => <span style={`--i:${i}`}>{c}</span>)}</div>
+    <div class="wm-fill">{'OpenPlay'.split('').map((c, i) => <span style={`--i:${i}`}>{c}</span>)}</div>
+  </div>
+</div>
+</div>

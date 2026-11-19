@@ -1,0 +1,50 @@
+---
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/hero.css';
+import '../styles/motion.css';
+import '../styles/responsive.css';
+import '../styles/premium.css';
+import Sprite from '../components/Sprite.astro';
+import { locales, defaultLocale, localePath, localeTags } from '../i18n/index.js';
+const { lang = defaultLocale, title, description, path = '/', noindex = false, ogType = 'website', ogImage = '/og.jpg', canonicalPath, alternates = locales, jsonld = [], published, modified } = Astro.props;
+const abs = (p) => (Astro.site ? new URL(p, Astro.site).href : p);
+const canonical = abs(canonicalPath ?? localePath(lang, path));
+---
+<!doctype html>
+<html lang={localeTags[lang] ?? lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
+    <meta name="theme-color" content="#171512" />
+    <link rel="canonical" href={canonical} />
+    {alternates.map((l) => <link rel="alternate" hreflang={l} href={abs(localePath(l, path))} />)}
+    {alternates.includes(defaultLocale) && <link rel="alternate" hreflang="x-default" href={abs(localePath(defaultLocale, path))} />}
+    <link rel="alternate" type="application/rss+xml" title="OpenPlay Blog" href={abs('/rss.xml')} />
+    <meta property="og:site_name" content="OpenPlay" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={abs(ogImage)} />
+    <meta property="og:locale" content={(localeTags[lang] ?? lang).replace('-', '_')} />
+    {published && <meta property="article:published_time" content={published} />}
+    {modified && <meta property="article:modified_time" content={modified} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={abs(ogImage)} />
+    {jsonld.map((j) => <script type="application/ld+json" set:html={JSON.stringify(j)} />)}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/race-bg.webp" as="image" fetchpriority="high" />
+    <script is:inline>document.documentElement.classList.add('js')</script>
+  </head>
+  <body>
+    <Sprite />
+    <slot />
+  </body>
+</html>

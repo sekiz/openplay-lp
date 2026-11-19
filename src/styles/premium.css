@@ -1,0 +1,219 @@
+/* Alt bölümlerin sanat yönetimi: hero ile aynı dil.
+   Dev tipografi, üst üste binen "sayfalar", sahne görsellerinin bölümlere taşınması, kayan bant, dev logolu kapanış.
+   Bu dosya en son yüklenir ve base.css'teki kart düzenini ezer. */
+:root{--R:clamp(24px,3.4vw,52px);--pad:clamp(88px,11vw,176px)}
+body{background:var(--petrol)}
+
+/* ---------- üst üste binen sayfalar ---------- */
+main>section{position:relative;background:var(--bg);border-radius:var(--R) var(--R) 0 0;margin-top:calc(-1*var(--R));padding:var(--pad) 0 calc(var(--pad) + var(--R))}
+main>section:last-of-type{padding-bottom:var(--pad)}
+.sdkbar{position:relative;z-index:1}
+#platform,.eco,.soc,.dev{color:var(--ivory)}
+#platform{background:var(--petrol);padding-top:clamp(72px,9vw,140px)}
+.dirs{border:0;background:#fff}
+
+/* ---------- bölüm başlıkları ---------- */
+.head,.head.c{max-width:none;margin:0 0 clamp(40px,6vw,88px);text-align:left;display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.head .eyebrow,.head.c .eyebrow{grid-column:1/-1;justify-content:flex-start;font-size:14px;margin-bottom:6px}
+.head .sub,.head.c .sub{margin:clamp(8px,1.200vw,20px) 0 0;max-width:46ch;font-size:clamp(16px,1.400vw,20px)}
+main h2{font-size:clamp(40px,6vw,90px);line-height:.98;letter-spacing:-.055em;font-weight:700;text-wrap:balance}
+main h2 em{color:#B9BEB8}
+#platform h2 em,.eco h2 em,.soc h2 em,.dev h2 em{color:rgba(255,244,219,.36)}
+#platform .sub,.soc .sub,.dev .sub{color:rgba(255,244,219,.72)}
+#platform .eyebrow,.soc .eyebrow,.dev .eyebrow{color:var(--amber)}
+#platform .eyebrow i,.soc .eyebrow i,.dev .eyebrow i{background:var(--amber)}
+.js .head h2{clip-path:inset(0 0 100% 0);transform:translateY(.35em);transition:clip-path 1.200s var(--e),transform 1.200s var(--e)}
+.js .head.in h2{clip-path:inset(-10% -5% -15% -5%);transform:none}
+
+/* ---------- kayan özellik bandı ---------- */
+.mq{position:relative;z-index:1;background:var(--petrol);color:var(--ivory);overflow:hidden;padding:clamp(28px,4vw,56px) 0 calc(clamp(28px,4vw,56px) + var(--R));white-space:nowrap}
+.mq-track{display:flex;width:max-content;animation:mq 48s linear infinite}
+.mq ul{display:flex;list-style:none}
+.mq li{font-size:clamp(44px,8.400vw,128px);font-weight:700;letter-spacing:-.055em;line-height:1;padding-right:.5em;display:flex;align-items:center;gap:.5em}
+.mq li:after{content:"";width:.22em;height:.22em;border-radius:50%;background:var(--amber);flex:none}
+.mq li:nth-child(even){color:transparent;-webkit-text-stroke:1.500px rgba(255,244,219,.55)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mq:hover .mq-track{animation-play-state:paused}
+
+/* ---------- ürün penceresi ---------- */
+#platform .frame{box-shadow:0 0 0 1px rgba(255,255,255,.14),0 60px 120px -40px rgba(0,0,0,.7),0 0 120px -20px rgba(255,177,77,.25);border-radius:24px;color:var(--ink)}
+#platform .frame .left{border-radius:0 0 0 24px}
+
+/* ---------- nasıl çalışır: kart yerine sütunlar ve dev rakamlar ---------- */
+.how .steps{gap:0;border-top:1.500px solid var(--ink)}
+.how .step{background:none;box-shadow:none;border-radius:0;padding:clamp(22px,2.600vw,36px) clamp(18px,2.400vw,36px) 0;border-left:1px solid var(--line)}
+.how .step:first-child{border-left:0;padding-left:0}
+.how .step:last-child{padding-right:0}
+.how .steps .card:hover{translate:none;box-shadow:none}
+.how .step .tx{order:-1;padding:0 0 clamp(22px,2.600vw,36px)}
+.how .step .tx .k{display:block;margin-bottom:10px}
+.how .sn{display:block;width:auto;height:auto;background:none;color:transparent;-webkit-text-stroke:1.500px var(--ink);font-size:clamp(64px,8vw,120px);font-weight:700;letter-spacing:-.06em;line-height:.9;margin-bottom:clamp(16px,2vw,28px)}
+.how h3{font-size:clamp(20px,1.900vw,26px);letter-spacing:-.03em}
+.how .step p{font-size:16px;max-width:32ch}
+.how .step .ui{border-radius:20px;height:auto;min-height:232px;background:#fff;box-shadow:0 0 0 1px var(--line),0 30px 60px -40px rgba(23,21,18,.45)}
+
+/* ---------- oyuncu: profil kartı kamp sahnesinin üstünde ---------- */
+.ply .split{grid-template-columns:minmax(0,1fr);gap:clamp(40px,5vw,72px)}
+.ply .split>div:first-child{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
+.ply .split>div:first-child>.eyebrow,.ply .split>div:first-child>h2{grid-column:1}
+.ply .split>div:first-child>.eyebrow{font-size:14px}
+.ply .split>div:first-child>.sub{margin:clamp(8px,1.200vw,20px) 0 0!important;max-width:46ch;font-size:clamp(16px,1.400vw,20px)}
+.ply .feat{grid-column:1/-1;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:clamp(28px,3vw,48px);border-top:1.500px solid var(--ink)}
+.ply .feat div{display:block;border-top:0;border-left:1px solid var(--line);padding:22px 22px 6px}
+.ply .feat div:first-child{border-left:0;padding-left:0}
+.ply .feat .i{margin-bottom:14px;width:40px;height:40px;border-radius:12px}
+.ply .feat b{font-size:18px;letter-spacing:-.02em;margin-bottom:4px}
+.ply .feat span span{font-size:15px}
+.ply .split>div:first-child>p:last-child{grid-column:1/-1}
+.ply .stage{position:relative;padding:clamp(20px,6vw,88px) clamp(16px,14vw,220px);border-radius:var(--R);box-shadow:none;overflow:hidden;background:linear-gradient(180deg,rgba(16,14,12,.2),rgba(16,14,12,.6)),url(/assets/camp-bg.webp) 50% 40%/cover;isolation:isolate}
+.ply .profile{border-radius:22px;box-shadow:0 0 0 1px rgba(255,255,255,.5),0 50px 100px -40px rgba(0,0,0,.75)}
+@supports (animation-timeline:view()){
+  .ply .stage,.cbox .cbg{animation:drift linear both;animation-timeline:view()}
+  @keyframes drift{from{background-position:50% 20%;object-position:50% 30%}to{background-position:50% 70%;object-position:50% 70%}}
+}
+
+/* ---------- ekonomi ---------- */
+.eco{background:#100E0C}
+.eco .ec{border-radius:22px}
+.eco .tc{border-radius:22px;background:rgba(255,244,219,.04)}
+.eco .three{margin-top:clamp(56px,7vw,104px)}
+.eco h3{font-size:22px;letter-spacing:-.03em}
+
+/* ---------- sosyal: pinball sahnesinin üstünde cam kartlar ---------- */
+.soc{background:linear-gradient(180deg,rgba(16,14,12,.9),rgba(16,14,12,.78) 45%,rgba(16,14,12,.94)),url(/assets/arcade-bg.webp) 60% 40%/cover}
+.soc .bc{background:rgba(255,250,240,.96);border-radius:24px;box-shadow:0 40px 80px -40px rgba(0,0,0,.8);color:var(--ink)}
+.soc .bc .ui{border-radius:18px}
+.soc .foot{background:rgba(255,244,219,.08);box-shadow:inset 0 0 0 1px rgba(255,244,219,.18);color:rgba(255,244,219,.8);backdrop-filter:blur(10px);border-radius:16px}
+.soc .foot .tl{color:var(--ivory)}
+.soc .foot .tl svg{color:var(--amber)}
+.soc h3{font-size:20px;letter-spacing:-.025em}
+
+/* ---------- özellik dizini: editoryal liste ---------- */
+.dirs .dg{box-shadow:none;border-radius:0;background:none;border-top:1.500px solid var(--ink);overflow:visible}
+.dirs .dg>div{padding:26px 22px 8px}
+.dirs .dg>div:first-child{padding-left:0}
+.dirs .dg>div:before{display:none}
+.dirs .dg h3{font-size:clamp(20px,1.900vw,28px);letter-spacing:-.035em}
+.dirs .dg .gs{font-size:14px;margin-bottom:6px}
+.dirs .dg li{font-size:15px;padding:10px 0}
+.dirs .gi{width:44px;height:44px;border-radius:13px}
+.dnote{text-align:left;margin-top:28px}
+
+/* ---------- geliştirici: koyu, kod öne çıkar ---------- */
+.dev{background:#100E0C}
+.dev .sdk{background:rgba(255,244,219,.045);box-shadow:inset 0 0 0 1px rgba(255,244,219,.12);border-radius:24px;color:var(--ivory);padding:clamp(22px,2.600vw,36px)}
+.dev .sdk:hover{translate:0 -4px;box-shadow:inset 0 0 0 1px rgba(255,177,77,.5)}
+.dev .sdk h3{font-size:clamp(22px,2.200vw,30px);letter-spacing:-.035em}
+.dev .sdk p{color:rgba(255,244,219,.7);font-size:16px}
+.dev .lg{background:var(--ivory);color:var(--petrol);border-radius:13px;width:46px;height:46px}
+.dev .lg.ts{background:#4C97E0;color:#fff}
+.dev .code{background:#0B0A08;border-radius:14px;font-size:13.500px}
+.dev .btn.d{background:var(--ivory);color:var(--petrol)}
+.dev .tl{color:var(--ivory)}
+.dev .tl svg{color:var(--amber)}
+.dev .mcp{background:var(--amber);color:#2A1700;border-radius:24px;box-shadow:none}
+.dev .mcp h3{color:#2A1700;font-size:24px;letter-spacing:-.03em}
+.dev .mcp p{color:rgba(42,23,0,.75);font-size:15.500px}
+.dev .mcp .tl{color:#2A1700}.dev .mcp .tl svg{color:#2A1700}
+.dev .term{background:#0B0A08;box-shadow:none;border-radius:14px}
+.dev .paths{background:rgba(255,244,219,.045);box-shadow:inset 0 0 0 1px rgba(255,244,219,.12);border-radius:24px;color:rgba(255,244,219,.7)}
+.dev .paths a{border-color:rgba(255,244,219,.1);color:rgba(255,244,219,.7)}
+.dev .paths a b{color:var(--ivory)}
+.dev .paths .i{background:rgba(255,244,219,.08);box-shadow:none}
+.dev .paths .i svg{color:var(--amber)}
+
+/* ---------- kapanış: sahne üstünde dev çağrı, altında dev logo ---------- */
+.close{position:relative;z-index:1;background:var(--petrol);padding:0;margin-top:calc(-1*var(--R));border-radius:var(--R) var(--R) 0 0;overflow:hidden}
+.close .wrap{width:100%}
+.cbox{border-radius:var(--R) var(--R) 0 0;min-height:min(86vh,820px);display:grid;align-content:center;justify-items:start;text-align:left;padding:clamp(72px,10vw,160px) max(5%,20px);background:var(--petrol)}
+.cbox:before{background:linear-gradient(90deg,rgba(16,14,12,.98) 0,rgba(16,14,12,.93) 50%,rgba(16,14,12,.55) 82%,rgba(16,14,12,.3)),linear-gradient(0deg,var(--petrol) 0,transparent 36%);z-index:1}
+.cbox .cbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 40%}
+.cbox>*{z-index:2}
+.cbox .obj{margin:0 0 clamp(20px,3vw,40px)}
+.cbox h2{font-size:clamp(40px,7.400vw,116px);line-height:.96;letter-spacing:-.055em;font-weight:700}
+.cbox h2 em{color:rgba(255,244,219,.7)}
+.cbox h2{max-width:13em}
+.cbox p{max-width:44ch;font-size:clamp(16px,1.400vw,20px)}
+.cbox .cta,.cbox .alt{justify-content:flex-start}
+.cbox .btn.p{background:var(--amber);color:#231400;box-shadow:0 14px 34px -12px rgba(255,177,77,.7);height:52px;padding:0 26px;font-size:16px}
+.cbox .btn.s{height:52px;padding:0 22px}
+.close footer{padding:clamp(28px,4vw,56px) max(5%,20px) 0;color:rgba(255,244,219,.55)}
+.close footer .logo{color:var(--ivory)!important}
+.close footer ul{color:rgba(255,244,219,.8)}
+.close footer .langs{box-shadow:inset 0 0 0 1px rgba(255,244,219,.25);color:var(--ivory)}
+.close footer .langs a[aria-current]{background:var(--ivory);color:var(--petrol)}
+.wordmark{font-size:20.500vw;font-weight:720;letter-spacing:-.065em;line-height:.8;color:transparent;-webkit-text-stroke:1.500px rgba(255,244,219,.22);text-align:center;white-space:nowrap;margin:clamp(20px,3vw,48px) 0 -.06em;user-select:none}
+
+/* ---------- küçük ekranlar ---------- */
+@media (max-width:1100px){
+  .ply .feat{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ply .feat div:nth-child(3){border-left:0;padding-left:0}
+  .ply .feat div:nth-child(n+3){border-top:1px solid var(--line)}
+  .ply .stage{padding:clamp(16px,6vw,64px)}
+}
+@media (max-width:899px){
+  .head,.head.c,.ply .split>div:first-child{grid-template-columns:minmax(0,1fr)}
+  .ply .split>div:first-child>.sub{grid-column:1;grid-row:auto}
+  .how .step,.how .step:first-child,.how .step:last-child{border-left:0;padding:26px 0 30px;border-top:1px solid var(--line)}
+  .how .step:first-child{border-top:0}
+  .how .sn{display:inline-block;font-size:56px;margin:0 14px 0 0;vertical-align:-8px}
+  .how .step .tx .k{display:flex;align-items:center}
+  .how .step p{max-width:none}
+  .cbox{min-height:0}
+  .cbox:before{background:linear-gradient(180deg,rgba(16,14,12,.9),rgba(16,14,12,.8) 60%,var(--petrol))}
+  .dirs .dg>div,.dirs .dg>div:first-child{padding:22px 0 8px}
+}
+@media (max-width:520px){
+  .ply .feat{grid-template-columns:minmax(0,1fr)}
+  .ply .feat div,.ply .feat div:nth-child(3){border-left:0;padding:18px 0 6px;border-top:1px solid var(--line)}
+  .ply .feat div:first-child{border-top:0}
+  .mq li:nth-child(even){-webkit-text-stroke-width:1px}
+}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none}}
+
+
+/* ================= 2. tur düzeltmeleri ================= */
+/* bölüm geçişleri: üst üste binen yuvarlak sayfalar kaldırıldı; düz, temiz sınırlar */
+main>section,main>section:last-of-type{border-radius:0;margin-top:0;padding:var(--pad) 0}
+#platform{padding-top:clamp(56px,7vw,112px)}
+.dirs{border-top:1px solid var(--line)}
+
+/* kayan bant: daha küçük ve sakin */
+.mq{padding:clamp(18px,2.200vw,30px) 0;border-bottom:1px solid rgba(255,244,219,.1)}
+.mq li{font-size:clamp(24px,3.400vw,48px);letter-spacing:-.04em;padding-right:.7em;gap:.7em}
+.mq li:after{width:.2em;height:.2em}
+.mq li:nth-child(even){-webkit-text-stroke-width:1px}
+.mq-track{animation-duration:60s}
+
+/* kapanış: çerçeveli, daha küçük başlık, metin solda koyu alanda */
+.close{margin-top:0;border-radius:0;padding:clamp(40px,6vw,96px) 0 0}
+.close .wrap{width:min(1296px,calc(100% - 40px))}
+.cbox{border-radius:clamp(20px,2.400vw,32px);min-height:0;padding:clamp(40px,6vw,88px) clamp(24px,5vw,80px);box-shadow:0 0 0 1px rgba(255,244,219,.12)}
+.cbox:before{background:linear-gradient(90deg,#100E0C 0,rgba(16,14,12,.97) 46%,rgba(16,14,12,.6) 66%,rgba(16,14,12,.05) 90%)}
+.cbox .cbg{object-position:78% 46%}
+.cbox .obj{display:none}
+.cbox h2{font-size:clamp(30px,4.200vw,60px);line-height:1.02;letter-spacing:-.045em;max-width:10em}
+.cbox h2 em{color:rgba(255,244,219,.55)}
+.cbox p{font-size:clamp(15.500px,1.200vw,18px);max-width:38ch;margin-top:16px}
+.cbox .cta{margin-top:26px}
+.cbox .btn.p,.cbox .btn.s{height:46px;font-size:15px;padding:0 20px}
+.cbox .alt{margin-top:18px}
+.close footer{padding:clamp(28px,3.600vw,48px) 4px 0}
+
+/* dev logo: harfler sırayla yükselir, ışık yazının üstünde gezer, imleci izler */
+@property --wx{syntax:"<percentage>";inherits:true;initial-value:-20%}
+.wordmark{position:relative;overflow:hidden;font-size:20.500vw;margin:clamp(12px,2vw,32px) 0 -.07em;--wx:-20%;--wy:55%;animation:wm-sweep 7s cubic-bezier(.5,0,.5,1) 1.600s infinite}
+.wordmark.live{animation:none}
+.wordmark>div{display:flex;justify-content:center}
+.wordmark span{display:inline-block;transform:translateY(105%);transition:transform 1.100s var(--e);transition-delay:calc(var(--i)*70ms)}
+.wordmark.in span{transform:none}
+.wordmark .wm-fill{position:absolute;inset:0;color:var(--ivory);-webkit-text-stroke:0;-webkit-mask-image:radial-gradient(circle 13vw at var(--wx) var(--wy),#000 0,rgba(0,0,0,.5) 45%,transparent 100%);mask-image:radial-gradient(circle 13vw at var(--wx) var(--wy),#000 0,rgba(0,0,0,.5) 45%,transparent 100%)}
+.wordmark .wm-fill span:nth-child(n+5){color:var(--amber)}
+@keyframes wm-sweep{0%{--wx:-20%}60%,100%{--wx:120%}}
+@media (prefers-reduced-motion:reduce){.wordmark{animation:none}.wordmark span{transform:none}.wordmark .wm-fill{display:none}}
+@media (max-width:899px){.cbox:before{background:linear-gradient(180deg,rgba(16,14,12,.94),rgba(16,14,12,.86))}}
+
+/* ---- 3. tur: sadeleştirme. Başlıklar tek renk, etiketlerde nokta yok, dekoratif ışımalar kaldırıldı ---- */
+h1 em,h2 em,main h2 em,.eco h2 em,.cbox h2 em,#platform h2 em,.soc h2 em,.dev h2 em{color:inherit}
+.eyebrow i{display:none}
+#hk:before{display:none}

@@ -1,0 +1,80 @@
+---
+// Yaratıcı yön B: oyun ve stüdyo yan yana. Bir oyun seçildiğinde sahne ve panel tek aksiyonla değişir.
+import Base from '../../layouts/Base.astro';
+import LabBar from './LabBar.astro';
+import '../../styles/lab.css';
+import { useTranslations } from '../../i18n/index.js';
+const { lang } = Astro.props;
+const t = useTranslations(lang).lab;
+const ids = ['race', 'camp', 'arcade'];
+const icons = ['reward', 'cloud-save', 'trophy'];
+const u = t.users;
+// skor tablosu: Ada 5. sıradan 3. sıraya çıkar (son sıralama DOM sırasıdır)
+const board = [{ n: u[0], s: 18420 }, { n: u[1], s: 17960 }, { n: 'Ada', s: 17105, me: true }, { n: u[2], s: 15300 }, { n: u[3], s: 14870 }];
+---
+<Base lang={lang} title={`${t.dirB} · ${t.title}`} description={t.bName} path="/lab/b/" noindex>
+  <main class="lb2" id="lb" data-i="0">
+    <section class="lb-stage" id="stage" aria-roledescription="carousel" aria-label={t.choose}>
+      {ids.map((id, i) => <img class:list={['lb-bg', { on: i === 0 }]} src={`/assets/${id}-bg.webp`} alt="" loading={i ? 'lazy' : 'eager'} />)}
+      <div class="lb-veil"></div>
+      <LabBar t={t} lang={lang} dir="b" />
+      <div class="lb-head">
+        <p class="la-kick">{t.kicker}</p>
+        <h1>{t.h1a} {t.h1b}</h1>
+      </div>
+      <div class="lb-ring" aria-hidden="true">
+        {ids.map((id, i) => <figure class={`lb-sub k-${id}`} data-k={i}><span class="floor"></span><img src={`/assets/${id}-sub.webp`} alt="" /></figure>)}
+      </div>
+      <p class="lb-event" aria-live="polite"><small>{t.event}</small><span id="ev">{t.games[0].event}</span></p>
+      <div class="lb-pick" role="group" aria-label={t.choose}>
+        <button class="lb-arrow" id="prev" type="button" aria-label={t.prev}><svg viewBox="0 0 16 16"><path d="M10 3.500L5.500 8 10 12.500" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+        {t.games.map((g, i) => (
+          <button class="lb-opt" type="button" aria-pressed={i === 0 ? 'true' : 'false'} data-i={i} data-event={g.event} data-result={g.result}>
+            <img src={`/icons/${icons[i]}.svg`} alt="" /><span><b>{g.name}</b><small>{g.feature}</small></span>
+          </button>
+        ))}
+        <button class="lb-arrow" id="next" type="button" aria-label={t.next}><svg viewBox="0 0 16 16"><path d="M6 3.500L10.500 8 6 12.500" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+      </div>
+    </section>
+
+    <aside class="lb-panel" aria-label={t.panelTitle}>
+      <header class="lp-top"><span>{t.inPanel}</span><button class="lb-replay" id="replay" type="button"><svg viewBox="0 0 12 12"><path d="M2 6a4 4 0 104-4H3.500M5 .500L3.500 2 5 3.500" fill="none" stroke="currentColor" stroke-width="1.400" stroke-linecap="round" stroke-linejoin="round" /></svg>{t.replay}</button></header>
+      <p class="lb-result"><small>{t.result}</small><span id="res">{t.games[0].result}</span></p>
+
+      <!-- 0: ödül ve bakiye -->
+      <div class="pv on" data-v="0">
+        <div class="lp-who"><span class="lp-av">A</span><span class="lp-name">Ada <i>{t.online}</i></span><span class="lp-bal"><small>{t.coins}</small><b id="coins" data-from="1250" data-to="1370">1250</b></span><span class="lp-bal"><small>{t.gems}</small><b class="num" data-n="24">24</b></span></div>
+        <div class="lp-list open">
+          <div class="lp-h"><span>{t.inventory}</span><small id="count" data-before={t.itemsBefore} data-after={t.itemsAfter}>{t.itemsBefore}</small></div>
+          <div class="lp-row fresh" id="row"><span class="it"><img src="/icons/reward.svg" alt="" /></span><span><b>{t.rewardName} <em>{t.new}</em></b><small>{t.srcReward}</small></span></div>
+          <div class="lp-row"><span class="it"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="25" fill="#2A2622" /><circle cx="32" cy="32" r="12" fill="#D2CDC2" /><circle cx="32" cy="32" r="4" fill="#2A2622" /></svg></span><span><b>{t.it2}</b><small>{t.src2}</small></span></div>
+          <div class="lp-row"><span class="it"><svg viewBox="0 0 64 64"><path d="M10 16l14-5 16 5 14-5v37l-14 5-16-5-14 5z" fill="#F1E6C4" stroke="#C2AE77" stroke-width="2.500" stroke-linejoin="round" /></svg></span><span><b>{t.it3}</b><small>{t.src3}</small></span></div>
+          <div class="lp-row"><span class="it"><svg viewBox="0 0 64 64"><rect x="10" y="24" width="44" height="28" rx="6" fill="#8C8D97" /><rect x="28" y="30" width="8" height="9" rx="2" fill="#FFB14D" /></svg></span><span><b>{t.it4}</b><small>{t.src4}</small></span></div>
+        </div>
+      </div>
+
+      <!-- 1: bulut kaydı -->
+      <div class="pv" data-v="1">
+        <div class="lp-who"><span class="lp-av">A</span><span class="lp-name">Ada <i>{t.online}</i></span></div>
+        <div class="lb-save" id="save">
+          <div class="lp-h"><span>{t.saveTitle}</span><small class="st" data-saving={t.saving} data-synced={t.synced}>{t.saving}</small></div>
+          <img class="thumb" src="/assets/camp-bg.webp" alt="" loading="lazy" />
+          <b>{t.saveSlot}</b><small>{t.saveMeta}</small>
+          <div class="bar"><i></i></div>
+          <dl><dt>{t.checkpoint}</dt><dd>{t.checkpointValue}</dd><dt>{t.synced}</dt><dd>{t.devices}</dd></dl>
+        </div>
+      </div>
+
+      <!-- 2: skor tablosu -->
+      <div class="pv" data-v="2">
+        <div class="lp-h"><span><img src="/icons/trophy.svg" alt="" />{t.lbTitle}</span><small>{t.lbMeta}</small></div>
+        <ol class="lb-board" id="board">
+          {board.map((r, i) => <li class:list={{ me: r.me }}><span class="rk">{i + 1}</span><span class="mv"><b>{r.n}{r.me && <em>{t.you}</em>}</b><span class="sc num" data-n={r.s}>{r.s}</span></span></li>)}
+        </ol>
+      </div>
+    </aside>
+  </main>
+  <script>
+    import '../../scripts/lab-b.js';
+  </script>
+</Base>

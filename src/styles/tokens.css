@@ -1,0 +1,18 @@
+/* Ajans tokenları (brand/tokens.css) + arayüz değişkenleri */
+@font-face{font-family:"Inter Variable";font-weight:100 900;font-display:swap;src:url("/fonts/inter-latin-ext-wght-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C0}
+@font-face{font-family:"Inter Variable";font-weight:100 900;font-display:swap;src:url("/fonts/inter-latin-wght-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215}
+@font-face{font-family:"Geist Mono";font-weight:100 900;font-display:swap;src:url("/fonts/geist-mono-latin-ext-wght-normal.woff2") format("woff2");unicode-range:U+0100-0130,U+0132-02BA}
+@font-face{font-family:"Geist Mono";font-weight:100 900;font-display:swap;src:url("/fonts/geist-mono-latin-wght-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+2000-206F,U+2190-2193}
+:root{
+  --bg:#FAF8F2; --ink:#171512; --ink2:#55565F; --ink3:#8C8D97; --ink4:#B4B5BD;
+  --line:#E8E8ED; --line2:#F1F1F4; --soft:#F5F5F7;
+  --acc:#171512; --acc2:#B8690F; --accs:#F3EEE3; --accl:#E2DACA;
+  --ok:#1E7F4F; --oks:#E9F3EC; --gold:#FFB14D; --golds:#FFF3DD; --goldl:#F1D9AE; --red:#D4483B;
+  --night:#100E0C;
+  --sans:"Inter Variable",Inter,system-ui,sans-serif; --mono:"Geist Mono",monospace;
+  --sh1:0 1px 2px rgba(11,11,15,.04),0 0 0 1px rgba(11,11,15,.06);
+  --sh2:0 1px 2px rgba(11,11,15,.04),0 0 0 1px rgba(11,11,15,.06),0 12px 32px -12px rgba(11,11,15,.10);
+  --sh3:0 0 0 1px rgba(11,11,15,.07),0 2px 4px rgba(11,11,15,.03),0 40px 90px -30px rgba(23,21,18,.30);
+;
+  --petrol:#171512;--ivory:#FFF4DB;--amber:#FFB14D;--paper:#FAF8F2;--muted:#BDB6A8;
+  --e:cubic-bezier(.2,.8,.2,1);--spring:cubic-bezier(.34,1.56,.64,1)}

@@ -1,0 +1,49 @@
+---
+const { t } = Astro.props;
+---
+<section id="developers" class="dev">
+<div class="wrap">
+  <div class="head"><div class="eyebrow"><i></i>{t.developer_experience}</div><h2>{t.start_with_the_tools} <em>{t.you_already_use}</em></h2><p class="sub">{t.two_sdks_two_quick_start}</p></div>
+  <div class="two">
+    <div class="card sdk">
+      <div class="hd"><span class="lg">U</span><h3>{t.i_build_with_unity}</h3></div>
+      <p>{t.connect_player_accounts_cloud_saves}</p>
+      <div class="code"><div class="ct"><span class="on">C#</span><span class="tag">{t.sample_code}</span></div>
+<pre><span class="k">var</span> player = <span class="k">await</span> OpenPlay.Auth.<span class="f">SignInAsGuestAsync</span>();
+
+<span class="k">await</span> OpenPlay.CloudSave.<span class="f">SaveAsync</span>(<span class="s">{t.code_save_slot}</span>, state);
+<span class="k">var</span> items = <span class="k">await</span> OpenPlay.Inventory.<span class="f">ListAsync</span>();</pre></div>
+      <div class="ft"><a class="btn d sm">{t.unity_quick_start}</a><a class="tl">{t.unity_sdk_reference}<svg><use href="#i-chev"/></svg></a></div>
+    </div>
+    <div class="card sdk">
+      <div class="hd"><span class="lg ts">TS</span><h3>{t.i_build_web_games_with}</h3></div>
+      <p>{t.sign_in_and_read_on}</p>
+      <div class="code"><div class="ct"><span>{t.client}</span><span class="on">{t.server_bff}</span><span class="tag">{t.sample_code}</span></div>
+<pre><span class="c">{t.the_api_key_never_leaves}</span>
+<span class="k">await</span> op.rewards.<span class="f">grant</span>(&#123;
+  playerId, reward: <span class="s">{t.code_reward_id}</span>,
+&#125;);</pre></div>
+      <div class="ft"><a class="btn d sm">{t.typescript_quick_start}</a><a class="tl">{t.bff_guide}<svg><use href="#i-chev"/></svg></a></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="mcp">
+      <h3>{t.with_your_coding_assistant_over}</h3>
+      <p>{t.your_assistant_reads_your_games}</p>
+      <div class="term"><div class="tt"><i></i><i></i><i></i><span>{t.coast_rally_sample_session}</span></div><pre><span class="u">{t.add_sprint_badge_to_the}</span>
+<span class="o">{t.item_created_item_sprint_badge}</span>
+
+<span class="u">{t.what_is_in_adas_inventory}</span>
+<span class="o">{t.n4_item_types_9_items}</span></pre></div>
+      <div class="ft"><a class="tl">{t.mcp_guide}<svg><use href="#i-chev"/></svg></a><a class="tl">{t.agents_md_guide}<svg><use href="#i-chev"/></svg></a></div>
+    </div>
+    <div class="card paths">
+      <a><span class="i"><svg><use href="#i-hook"/></svg></span><b>{t.webhook_events}</b>{t.forward_events_such_as_purchases}<svg><use href="#i-chev"/></svg></a>
+      <a><span class="i"><svg><use href="#i-plug"/></svg></span><b>{t.writing_plugins}</b>{t.write_your_own_server_logic}<svg><use href="#i-chev"/></svg></a>
+      <a><span class="i"><svg><use href="#i-server"/></svg></span><b>{t.hosting_and_architecture}</b>{t.see_how_studio_games_and}<svg><use href="#i-chev"/></svg></a>
+      <a><span class="i"><svg><use href="#i-code"/></svg></span><b>{t.api_reference}</b>{t.errors_idempotency_pagination_rate_limits}<svg><use href="#i-chev"/></svg></a>
+      <a><span class="i"><svg><use href="#i-rocket"/></svg></span><b>{t.going_live}</b>{t.a_security_and_troubleshooting_checklist}<svg><use href="#i-chev"/></svg></a>
+    </div>
+  </div>
+</div>
+</section>

@@ -1,0 +1,9 @@
+---
+import LabB from '../../../components/lab/LabB.astro';
+import { locales, defaultLocale } from '../../../i18n/index.js';
+export function getStaticPaths() {
+  return locales.filter((l) => l !== defaultLocale).map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+---
+<LabB lang={lang} />

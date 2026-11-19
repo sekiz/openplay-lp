@@ -1,0 +1,10 @@
+---
+import LangSwitch from './LangSwitch.astro';
+import { localePath } from '../i18n/index.js';
+const { t, lang } = Astro.props;
+---
+<div class="stick"><div class="wrap"><nav>
+  <a class="logo"><svg viewBox="0 0 44 28"><path fill="currentColor" d="M1 2q0-2 2-1l17 11q2 1 0 3L3 26q-2 1-2-1zm21 0q0-2 2-1l17 11q2 1 0 3L24 26q-2 1-2-1z"/></svg>OpenPlay</a>
+  <ul><li><a href="#platform">{t.platform}</a></li><li><a href="#how-it-works">{t.how_it_works}</a></li><li><a href="#features">{t.features}</a></li><li><a href="#developers">{t.developers}</a></li><li><a href="#developers">{t.documentation}</a></li><li><a href={localePath(lang, '/blog/')}>{t.blog}</a></li></ul>
+  <div class="r"><LangSwitch lang={lang} /><span>{t.sign_in}</span><a class="btn p sm">{t.quick_start}</a></div>
+</nav></div></div>

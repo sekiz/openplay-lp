@@ -1,0 +1,46 @@
+---
+const { t } = Astro.props;
+---
+<section class="ply">
+<div class="wrap split">
+  <div>
+    <div class="eyebrow"><i></i>{t.player_and_progress}</div>
+    <h2>{t.save_every_players} <em>{t.progress}</em></h2>
+    <p class="sub" style="margin-top:16px">{t.the_player_starts_as_a}</p>
+    <div class="feat">
+      <div><span class="i"><svg><use href="#i-user"/></svg></span><span><b>{t.guest_sign_in}</b><span>{t.a_first_session_with_no}</span></span></div>
+      <div><span class="i"><svg><use href="#i-link"/></svg></span><span><b>{t.account_linking}</b><span>{t.a_permanent_account_with_email}</span></span></div>
+      <div><span class="i"><svg><use href="#i-layers"/></svg></span><span><b>{t.characters}</b><span>{t.several_characters_under_one_player}</span></span></div>
+      <div><span class="i"><svg><use href="#i-cloud"/></svg></span><span><b>{t.cloud_save}</b><span>{t.progress_travels_between_devices}</span></span></div>
+    </div>
+    <p style="margin-top:22px"><a class="tl">{t.identity_and_accounts_guide}<svg><use href="#i-chev"/></svg></a></p>
+  </div>
+  <div class="stage">
+    <div class="card profile">
+      <div class="ph"><span class="av">A</span><div><div class="n">Ada <span class="badge">{t.online}</span></div><small class="mono">ply_7f3a91c2</small></div><span class="tag" style="margin-left:auto">{t.sample_screen}</span></div>
+      <div class="pg">
+        <div>
+          <div class="lbl">{t.account}</div>
+          <div class="tline">
+            <div class="e on">{t.started_as_a_guest}<small>{t.november_3_web}</small></div>
+            <div class="e on">{t.google_account_linked}<small>{t.november_5_progress_kept}</small></div>
+            <div class="e">{t.email_and_password}<small>{t.not_linked}</small></div>
+          </div>
+        </div>
+        <div>
+          <div class="lbl">{t.characters} <span>2</span></div>
+          <div class="char"><span class="a">A</span><span>{t.driver_ada}<small>{t.active_character}</small></span><span class="lv">{t.level_12}</span></div>
+          <div class="char"><span class="a b">M</span><span>{t.co_driver_max}<small>{t.last_seen_november_9}</small></span><span class="lv">{t.level_4}</span></div>
+        </div>
+        <div class="full">
+          <div class="lbl">{t.cloud_save} <span>{t.n2_saves_99_kb}</span></div>
+          <div class="saves">
+            <div class="save"><b>{t.save_1} <span class="badge">{t.synced}</span></b><small>{t.coast_stage_part_3}</small><div class="bar"><i style="width:62%"></i></div><small>{t.today_2_32_pm_48}</small></div>
+            <div class="save"><b>{t.autosave} <span class="badge">{t.synced}</span></b><small>{t.coast_cup_stage_2}</small><div class="bar"><i style="width:38%"></i></div><small>{t.today_2_29_pm_51}</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

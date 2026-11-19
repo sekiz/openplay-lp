@@ -1,0 +1,18 @@
+---
+// Blog sayfalarının üst çubuğu.
+import LangSwitch from '../LangSwitch.astro';
+import { localePath } from '../../i18n/index.js';
+const { t, lang, path } = Astro.props;
+const b = t.blog;
+---
+<header class="bh">
+  <a class="bh-logo" href={localePath(lang)}><svg viewBox="0 0 44 28"><path fill="currentColor" d="M1 2q0-2 2-1l17 11q2 1 0 3L3 26q-2 1-2-1zm21 0q0-2 2-1l17 11q2 1 0 3L24 26q-2 1-2-1z" /></svg>OpenPlay</a>
+  <nav aria-label={t.hero.navLabel}>
+    <a href={`${localePath(lang)}#platform`}>{b.platform}</a>
+    <a href={`${localePath(lang)}#features`}>{b.features}</a>
+    <a href={`${localePath(lang)}#developers`}>{b.developers}</a>
+    <a href={localePath(lang, '/blog/')} aria-current="page">{b.navLabel}</a>
+  </nav>
+  <LangSwitch lang={lang} path={path} />
+  <a class="btn p sm" href={`${localePath(lang)}#developers`}>{b.ctaButton}</a>
+</header>

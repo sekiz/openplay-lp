@@ -1,0 +1,156 @@
+/* Hero: ajansın katmanlı sahneleri + hareket. Sahne 1440×810 tasarım uzayında durur,
+   hero.js her sahneyi ekrana göre ölçekleyip konumlar (mobilde nesneye göre çerçeveler). */
+.hx{position:relative;height:clamp(600px,56.25vw,900px);overflow:hidden;background:var(--petrol);color:var(--ivory);isolation:isolate}
+.scenes{position:absolute;inset:0;transition:transform 2.2s var(--e),filter 2.2s var(--e)}
+.hx.boot .scenes{transform:scale(1.14);filter:blur(10px) brightness(.6)}
+.scene{position:absolute;left:0;top:0;width:1440px;height:810px;transform-origin:0 0;opacity:0;transition:opacity 1s var(--e);--sx:70}
+.scene.on{opacity:1;--sx:0;z-index:1}
+.scene.out{--sx:-70}
+.ly,.lyi{position:absolute;inset:0}
+.ly{transform:translate3d(calc(var(--sx)*var(--d)*1px),0,0);transition:transform 1.3s var(--e)}
+.lyi{transform:translate3d(calc(var(--mx,0)*var(--d)*-22px),calc(var(--my,0)*var(--d)*-12px),0) scale(1.07);will-change:transform}
+.ly img{position:absolute;display:block;user-select:none;-webkit-user-drag:none}
+.ly img.bg{inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ana nesne: zeminle aynı katmanda, kendi temas gölgesiyle */
+.subw{position:absolute;transition:transform 1.5s var(--e) .2s,opacity .5s ease .2s;will-change:transform}
+.subw img.sub{left:0;top:0;width:100%;height:100%}
+.subw .shd{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;mix-blend-mode:multiply}
+.scene:not(.on) .subw{opacity:0}
+.scene:not(.on) .s-race,.boot .scene.on .s-race{transform:translate(170px,-78px) scale(.88);opacity:0}
+.scene:not(.on) .s-camp{transform:scale(.985)}
+.scene:not(.on) .s-arcade{transform:translate(-210px,-150px)}
+.s-arcade{transition:transform 1.4s cubic-bezier(.25,1,.4,1) .25s,opacity .3s ease .25s}
+.s-arcade img.sub{transition:rotate 1.4s cubic-bezier(.25,1,.4,1) .25s}
+.scene:not(.on) .s-arcade img.sub{rotate:-300deg}
+.fgi{transition:transform 1.6s var(--e)}
+.scene:not(.on) .fgi{transform:translateY(40px)}
+.fx{position:absolute;border-radius:50%;pointer-events:none;mix-blend-mode:screen}
+.fx-camp{left:900px;top:300px;width:420px;height:340px;background:radial-gradient(closest-side,rgba(255,190,110,.5),rgba(255,160,70,0));animation:flick 3.4s ease-in-out infinite}
+.fx-arcade{left:960px;top:420px;width:180px;height:180px;background:radial-gradient(closest-side,rgba(255,210,140,.55),rgba(255,177,77,0));animation:flick 2.2s ease-in-out infinite}
+.fx-race{left:880px;top:410px;width:240px;height:110px;background:radial-gradient(closest-side,rgba(255,236,190,.4),rgba(255,236,190,0));animation:flick 4s ease-in-out infinite}
+@keyframes flick{0%,100%{opacity:1}35%{opacity:.7}55%{opacity:.95}75%{opacity:.6}}
+
+.motes,.shade,.pin{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.motes{z-index:2;mix-blend-mode:screen}
+.shade{z-index:3;background:linear-gradient(180deg,rgba(0,0,0,.4),transparent 18%),linear-gradient(0deg,var(--petrol) 0,color-mix(in srgb,var(--petrol) 75%,transparent) 9%,transparent 26%)}
+.tints,.tints i{position:absolute;inset:0;pointer-events:none}
+.tints{z-index:3}
+.tints i{opacity:0;transition:opacity 1.1s var(--e);background:linear-gradient(90deg,rgba(var(--tint),.95) 1%,rgba(var(--tint),.75) 30%,rgba(var(--tint),.25) 52%,transparent 66%)}
+.tints i.on{opacity:1}
+
+/* giriş sırası */
+.hi{transition:opacity .9s var(--e),transform .9s var(--e);transition-delay:calc(.25s + var(--o)*90ms)}
+.boot .hi{opacity:0;transform:translateY(14px)}
+
+nav.hnav{position:absolute;z-index:6;left:5%;right:5%;top:26px;height:auto;padding:0;background:none;border-radius:0;box-shadow:none;display:flex;justify-content:flex-start;align-items:center;gap:34px;font-size:15px;font-weight:500}
+.hnav a{opacity:.92;display:flex;align-items:center;gap:6px}
+.hnav a svg{width:12px;height:12px}
+.hnav .r{margin-left:auto;display:flex;align-items:center;gap:22px}
+.hnav .hlogo{font-weight:720;font-size:23px;letter-spacing:-.045em;gap:12px;opacity:1;margin-right:8px}
+.hnav .hlogo svg{width:33px;height:21px}
+
+.htext{position:absolute;z-index:6;left:5%;top:50%;translate:0 -52%;width:min(44%,620px)}
+#hk{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:550;margin-bottom:18px}
+#hk:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(255,177,77,.25)}
+.htext h1{font-size:clamp(34px,4.2vw,60px);line-height:1.06;letter-spacing:-.05em;font-weight:700}
+.ln{display:block;overflow:hidden;padding-bottom:.08em}
+.ln>span{display:block;transition:transform 1.1s var(--e);transition-delay:calc(.25s + var(--o)*90ms)}
+.boot .ln>span{transform:translateY(110%)}
+#hp{font-size:clamp(15.5px,1.25vw,18px);line-height:1.5;margin-top:20px;max-width:410px;min-height:4.5em}
+#hk,#hp{transition:opacity .35s var(--e),transform .5s var(--e)}
+#hk.sw,#hp.sw{opacity:0!important;transform:translateY(10px)}
+.hcta{display:flex;gap:26px;align-items:center;margin-top:22px}
+.hb{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px;border-radius:8px;background:var(--ivory);color:var(--ink);font-weight:650;font-size:16px;box-shadow:0 10px 30px -10px rgba(0,0,0,.6);transition:transform .25s var(--spring),background .2s}
+.hb:hover{transform:translateY(-2px);background:#fff}
+.hb svg{width:12px;height:12px;transition:transform .25s var(--e)}
+.hb:hover svg{transform:translate(2px,-2px)}
+.hl{font-weight:600;font-size:16px;border-bottom:1.5px solid rgba(255,244,219,.6);padding-bottom:2px;cursor:pointer}
+
+/* bildirim kartı ve iğne */
+.pin{z-index:5;overflow:visible}
+#pinl{stroke:var(--ivory);stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .55s var(--e)}
+.pinon #pinl{stroke-dashoffset:0}
+#pind{opacity:0;transition:opacity .3s}
+.pinon #pind{opacity:1}
+#pind .ring{animation:ring 2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes ring{0%{transform:scale(1);opacity:.9}100%{transform:scale(3.2);opacity:0}}
+.callout{position:absolute;z-index:6;left:0;top:0;display:flex;align-items:center;gap:14px;height:62px;padding:0 6px 0 14px;border-radius:10px;background:var(--ivory);color:var(--ink);box-shadow:0 24px 50px -18px rgba(0,0,0,.65),0 4px 20px rgba(0,0,0,.14);opacity:0;transform:translateY(10px) scale(.94);transform-origin:50% 100%;transition:opacity .25s,transform .25s;white-space:nowrap}
+.callout.show{opacity:1;transform:none;transition:opacity .4s var(--e),transform .55s var(--spring)}
+.ci{width:40px;height:40px;flex:none}
+.ci img{width:40px;height:40px;display:block}
+.ct b{display:block;font-size:16px;font-weight:650;letter-spacing:-.01em;line-height:1.2}
+.ct small{font-size:13.5px;color:#5A554D}
+.cg{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:600;padding:0 14px;border-left:1px solid #D8CFBC;align-self:stretch;cursor:pointer;border-radius:0 8px 8px 0;transition:background .2s}
+.cg:hover{background:#F1E4C4}
+.cg svg{width:12px;height:12px;animation:nudge 1.6s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:none}50%{transform:translateY(3px)}}
+
+/* sekmeler */
+.htabs{position:absolute;z-index:6;left:5%;right:5%;bottom:0;height:84px;display:flex;align-items:center;gap:8px}
+.htab{position:relative;height:100%;flex:1 1 0;max-width:230px;min-width:0;white-space:nowrap;background:none;border:0;color:var(--ivory);font:500 16px var(--sans);display:flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;opacity:.75;transition:opacity .3s,color .3s}
+.htab svg{width:24px;height:24px;flex:none}
+.htab:hover{opacity:1}
+.htab:focus-visible{outline:2px solid var(--amber);outline-offset:-6px;border-radius:8px}
+.htab.on{opacity:1;font-weight:650;color:#fff}
+.htab.on svg{color:var(--amber)}
+.htab i{position:absolute;left:24px;right:24px;bottom:18px;height:3px;background:rgba(255,244,219,.16);border-radius:3px;overflow:hidden}
+.htab u{position:absolute;inset:0;background:var(--amber);transform:scaleX(0);transform-origin:0 50%}
+.htab.on u{animation:fill 6.5s linear forwards}
+.hx:hover .htab.on u{animation-play-state:paused}
+.hx.manual .htab.on u{animation:none;transform:scaleX(1)}
+@keyframes fill{to{transform:scaleX(1)}}
+
+/* ---------- tablet ve mobil: metin üstte, nesne altta ---------- */
+@media (max-width:899px){
+  .hx{height:clamp(700px,100svh,880px)}
+  .tints i{background:linear-gradient(180deg,rgb(var(--tint)) 0,rgba(var(--tint),.96) 28%,rgba(var(--tint),.6) 44%,transparent 58%)}
+  .shade{background:linear-gradient(0deg,var(--petrol) 0,color-mix(in srgb,var(--petrol) 80%,transparent) 9%,transparent 24%)}
+  nav.hnav{left:20px;right:20px;top:18px;gap:18px;font-size:14px}
+  .hnav>a:not(.hlogo){display:none}
+  .hnav .r>a{display:none}
+  .hnav .hlogo{font-size:21px}
+  .htext{left:20px;right:20px;top:78px;translate:none;width:auto;max-width:560px}
+  #hk{margin-bottom:12px;font-size:13px}
+  .htext h1{font-size:clamp(32px,8.6vw,46px)}
+  #hp{margin-top:12px;min-height:0;font-size:15.5px;max-width:420px}
+  .hcta{margin-top:16px;gap:20px}
+  .hb{height:44px;font-size:15px;padding:0 16px}
+  .hl{font-size:15px}
+  .callout{height:52px;gap:10px;padding:0 4px 0 10px}
+  .ci,.ci img{width:32px;height:32px}
+  .ct b{font-size:14px}.ct small{font-size:12px}
+  .cg{padding:0 10px;font-size:0;gap:0}
+  .cg svg{width:14px;height:14px}
+  .htabs{left:0;right:0;height:64px;gap:0;padding:0 6px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}
+  .htabs::-webkit-scrollbar{display:none}
+  .htab{flex:0 0 auto;max-width:none;padding:0 16px;font-size:13.5px;gap:7px;scroll-snap-align:center}
+  .htab svg{width:18px;height:18px}
+  .htab i{left:10px;right:10px;bottom:10px}
+}
+@media (min-width:900px) and (max-width:1240px){.htab{font-size:14px;gap:8px}.htab svg{width:19px;height:19px}.htab i{left:12px;right:12px}}
+
+/* dev başlık: sahnenin içinde, arka plan ile ana nesne arasında durur (nesne başlığın önünden geçer) */
+.hbig{position:absolute;left:var(--hx,72px);top:214px;font-size:104px;line-height:1.02;letter-spacing:-.055em;font-weight:700;color:var(--ivory);white-space:nowrap;text-shadow:0 2px 30px rgba(0,0,0,.3);transition:opacity .9s var(--e),transform 1.400s var(--e)}
+.hbig span{display:block}
+.boot .hbig{opacity:0;transform:translateY(40px)}
+@media (min-width:900px){
+  .htext{top:auto;bottom:128px;translate:none;width:min(40%,460px)}
+  .htext h1{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  #hk{margin-bottom:10px}
+  #hp{margin-top:0;min-height:3em}
+  .tints i{background:linear-gradient(90deg,rgba(var(--tint),.8) 0,rgba(var(--tint),.36) 40%,transparent 62%)}
+  .shade{background:linear-gradient(180deg,rgba(0,0,0,.4),transparent 18%),linear-gradient(0deg,var(--petrol) 0,color-mix(in srgb,var(--petrol) 80%,transparent) 12%,transparent 40%)}
+  .callout{transform-origin:100% 50%}
+}
+@media (max-width:899px){.hbig{display:none}}
+
+/* düz sahneler: başlığın önünden geçen maskeli kopya + sahneye özel giriş */
+.ly img.occ{left:0;top:170px;width:1440px;height:300px}
+.scene.flat img.bg{transition:transform 2.4s var(--e)}
+.scene.flat:not(.on) img.bg,.scene.flat:not(.on) img.occ{transform:scale(1.035)}
+.scene.flat img.occ{transition:transform 2.4s var(--e);transform-origin:50% calc(405px - 170px)}
+.fx-town{left:960px;top:330px;width:200px;height:170px;background:radial-gradient(closest-side,rgba(255,200,120,.38),rgba(255,180,90,0));animation:flick 3.6s ease-in-out infinite}
+.fx-gate{left:1120px;top:190px;width:240px;height:240px;background:radial-gradient(closest-side,rgba(255,196,120,.5),rgba(255,160,70,0));animation:flick 2.800s ease-in-out infinite}
+.fx-run{left:1020px;top:40px;width:340px;height:340px;background:radial-gradient(closest-side,rgba(255,236,200,.16),rgba(255,236,200,0));animation:flick 5s ease-in-out infinite}
+.hbig3{top:198px;font-size:74px;line-height:1.04}

@@ -1,0 +1,70 @@
+---
+// Yaratıcı yön A: oyundan panele tek kesintisiz sahne.
+// Açılışta Kıyı Rallisi ve panelin başlangıç durumu görünür; demo finiş → ödül → panel sırasını oynatır.
+import Base from '../../layouts/Base.astro';
+import LabBar from './LabBar.astro';
+import '../../styles/lab.css';
+import { useTranslations } from '../../i18n/index.js';
+const { lang } = Astro.props;
+const t = useTranslations(lang).lab;
+const blur = '<defs><filter id="bl22" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter><filter id="bl12" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter><filter id="bl5" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter></defs><polygon points="40,580 -70,640 330,725 440,655" opacity=".4" filter="url(#bl22)"/><polygon points="60,560 120,615 400,662 470,642 662,548 690,470 600,440 300,470" opacity=".9" filter="url(#bl12)"/><g filter="url(#bl5)"><ellipse cx="412" cy="648" rx="72" ry="12"/><ellipse cx="612" cy="538" rx="54" ry="9"/><ellipse cx="96" cy="592" rx="52" ry="9"/></g>';
+---
+<Base lang={lang} title={`${t.dirA} · ${t.title}`} description={t.aName} path="/lab/a/" noindex>
+  <main class="la" id="la" data-s="idle">
+    <div class="la-cam">
+      <div class="la-sc">
+        <img class="la-bg" src="/assets/race-bg.webp" alt="" fetchpriority="high" />
+        <!-- başlık sahnenin içinde: arka plan ile araba arasında durur -->
+        <h1 class="la-h1" aria-hidden="true"><span>{t.h1a}</span><span>{t.h1b}</span></h1>
+        <div class="la-car" id="car">
+          <svg class="shd" viewBox="0 0 800 655" fill="#0d0703" set:html={blur}></svg>
+          <img src="/assets/race-sub.webp" alt="" />
+        </div>
+        <img class="la-fg" src="/assets/race-fg.webp" alt="" />
+      </div>
+    </div>
+    <div class="la-shade"></div>
+    <div class="la-wipe" aria-hidden="true"></div>
+
+    <LabBar t={t} lang={lang} dir="a" />
+
+    <div class="la-copy">
+      <p class="la-kick">{t.kicker}</p>
+      <h1 class="la-h1m">{t.h1a} {t.h1b}</h1>
+      <p class="la-lede">{t.lede}</p>
+      <div class="la-cta">
+        <button class="lbtn p" id="play" type="button"><svg viewBox="0 0 12 12"><path d="M3 1.500l7 4.500-7 4.500z" fill="currentColor" /></svg>{t.play}</button>
+        <a class="lbtn g" href="#">{t.quick}</a>
+      </div>
+    </div>
+
+    <p class="la-cap" id="cap" aria-live="polite" data-finish={t.capFinish} data-reward={t.capReward} data-panel={t.capPanel}></p>
+
+    <div class="la-tag" id="tag">{t.tagPlayer}</div>
+    <div class="la-fly" id="fly" aria-hidden="true"><img src="/icons/reward.svg" alt="" /><b>{t.rewardName}</b><span>{t.rewardCoins}</span></div>
+
+    <aside class="lp" id="panel" aria-label={t.panelTitle}>
+      <header class="lp-top"><span>{t.panelTitle}</span><small>{t.crumb}</small></header>
+      <div class="lp-who">
+        <span class="lp-av">A</span>
+        <span class="lp-name">Ada <i>{t.online}</i></span>
+        <span class="lp-bal"><small>{t.coins}</small><b id="coins" data-from="1250" data-to="1370">1250</b></span>
+        <span class="lp-bal"><small>{t.gems}</small><b class="num" data-n="24">24</b></span>
+      </div>
+      <div class="lp-list">
+        <div class="lp-h"><span>{t.inventory}</span><small id="count" data-before={t.itemsBefore} data-after={t.itemsAfter}>{t.itemsBefore}</small></div>
+        <div class="lp-row fresh" id="row"><span class="it" id="slot"><img src="/icons/reward.svg" alt="" /></span><span><b>{t.rewardName} <em>{t.new}</em></b><small>{t.srcReward}</small></span></div>
+        <div class="lp-row"><span class="it"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="25" fill="#2A2622" /><circle cx="32" cy="32" r="12" fill="#D2CDC2" /><circle cx="32" cy="32" r="4" fill="#2A2622" /></svg></span><span><b>{t.it2}</b><small>{t.src2}</small></span></div>
+        <div class="lp-row"><span class="it"><svg viewBox="0 0 64 64"><path d="M10 16l14-5 16 5 14-5v37l-14 5-16-5-14 5z" fill="#F1E6C4" stroke="#C2AE77" stroke-width="2.500" stroke-linejoin="round" /><path d="M20 38c4-8 10-2 14-8s8-4 10-8" fill="none" stroke="#F0604D" stroke-width="2.500" stroke-dasharray="4 4" stroke-linecap="round" /></svg></span><span><b>{t.it3}</b><small>{t.src3}</small></span></div>
+        <div class="lp-row"><span class="it"><svg viewBox="0 0 64 64"><rect x="10" y="24" width="44" height="28" rx="6" fill="#8C8D97" /><rect x="10" y="24" width="44" height="10" rx="5" fill="#55565F" /><path d="M24 24v-6a4 4 0 014-4h8a4 4 0 014 4v6" fill="none" stroke="#55565F" stroke-width="4" /><rect x="28" y="30" width="8" height="9" rx="2" fill="#FFB14D" /></svg></span><span><b>{t.it4}</b><small>{t.src4}</small></span></div>
+      </div>
+      <footer class="lp-act"><small>{t.activity}</small><span id="act" data-idle={t.actIdle} data-done={t.actDone}>{t.actIdle}</span></footer>
+    </aside>
+
+    <ol class="la-steps" aria-hidden="true"><li data-k="finish">{t.stepFinish}</li><li data-k="reward">{t.stepReward}</li><li data-k="panel">{t.stepPanel}</li></ol>
+    <button class="lbtn g la-replay" id="replay" type="button"><svg viewBox="0 0 12 12"><path d="M2 6a4 4 0 104-4H3.500M5 .500L3.500 2 5 3.500" fill="none" stroke="currentColor" stroke-width="1.400" stroke-linecap="round" stroke-linejoin="round" /></svg>{t.replay}</button>
+  </main>
+  <script>
+    import '../../scripts/lab-a.js';
+  </script>
+</Base>

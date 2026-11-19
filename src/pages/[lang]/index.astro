@@ -1,0 +1,12 @@
+---
+// Varsayılan dil dışındaki her dil için /<kod>/ sayfasını üretir.
+import Home from '../../components/Home.astro';
+import { locales, defaultLocale, missingKeys } from '../../i18n/index.js';
+export function getStaticPaths() {
+  return locales.filter((l) => l !== defaultLocale).map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const missing = missingKeys(lang);
+if (missing.length) console.warn(`[i18n] ${lang}: ${missing.length} eksik anahtar (İngilizce gösterilecek): ${missing.slice(0, 8).join(', ')}${missing.length > 8 ? '…' : ''}`);
+---
+<Home lang={lang} />

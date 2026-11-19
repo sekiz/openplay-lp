@@ -1,0 +1,40 @@
+---
+const { t } = Astro.props;
+---
+<section class="soc">
+<div class="wrap">
+  <div class="head"><div class="eyebrow"><i></i>{t.social_and_real_time}</div><h2>{t.bring_players_into}<br><em>{t.the_same_contest}</em></h2><p class="sub">{t.leaderboard_chat_and_notifications_use}</p></div>
+  <div class="bento">
+    <div class="card bc">
+      <div class="ui"><div class="lb">
+        <div class="top"><span><svg><use href="#rozet"/></svg>{t.coast_cup}</span><small>{t.ends_in_1_day_6}</small></div>
+        <div class="r"><span class="p">1</span>{t.user_first}<span class="sc">{t.n18_420}</span></div>
+        <div class="r"><span class="p">2</span>{t.user_second}<span class="sc">{t.n17_960}</span></div>
+        <div class="r me"><span class="p">3</span><span>Ada<small>{t.up_1_place}</small></span><span class="sc">{t.n17_105}</span></div>
+        <div class="r"><span class="p">4</span>{t.user_fourth}<span class="sc">{t.n15_300}</span></div>
+        <div class="r"><span class="p">5</span>{t.user_fifth}<span class="sc">{t.n14_870}</span></div>
+      </div></div>
+      <div class="tx"><h3>{t.contests_and_leaderboards}</h3><p>{t.open_a_timed_contest_and}</p></div>
+    </div>
+    <div class="card bc">
+      <div class="ui chat">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px"><b style="font-size:13px;font-weight:600">{t.cup_chat}</b><span class="conn">{t.connected}</span></div>
+        <div class="msg"><b>{t.user_second}</b><span>{t.last_corner_of_the_coast}</span></div>
+        <div class="msg me"><b>Ada</b><span>{t.got_the_badge_heading_into}</span></div>
+        <div class="sys"><svg class="ic" style="width:12px;height:12px"><use href="#i-check"/></svg>{t.reconnected_2_messages_synced}</div>
+        <div class="msg"><b>{t.user_first}</b><span>{t.congrats_on_third_place_ada}</span></div>
+      </div>
+      <div class="tx"><h3>{t.chat_and_real_time_connection}</h3><p>{t.when_the_connection_drops_the}</p></div>
+    </div>
+    <div class="card bc">
+      <div class="ui" style="padding:8px;display:flex"><div class="lock">
+        <div class="clock">{t.clock}</div><div class="date">{t.thursday_november_19}</div>
+        <div class="toast"><span class="ap"><svg><use href="#pusula"/></svg></span><span><b>{t.coast_rally} <small>{t.now}</small></b>{t.you_moved_up_to_3rd}</span></div>
+        <div class="toast dim"><span class="ap"><svg><use href="#pusula"/></svg></span><span><b>{t.coast_rally} <small>{t.time_event}</small></b>{t.new_item_sprint_badge}</span></div>
+      </div></div>
+      <div class="tx"><h3>{t.notifications}</h3><p>{t.send_an_in_game_event}</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>{t.real_time_connection_reconnection_and}</span><div><a class="tl">{t.real_time_protocol}<svg><use href="#i-chev"/></svg></a><a class="tl">{t.contests_and_leaderboards}<svg><use href="#i-chev"/></svg></a></div></div>
+</div>
+</section>

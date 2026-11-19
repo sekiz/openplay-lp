@@ -1,0 +1,43 @@
+---
+// Ana sayfa: her dilin rotası bu bileşeni kendi `lang` değeriyle çağırır.
+import Base from '../layouts/Base.astro';
+import Hero from './Hero.astro';
+import StickyNav from './StickyNav.astro';
+import SdkBar from './SdkBar.astro';
+import Marquee from './Marquee.astro';
+import Showcase from './Showcase.astro';
+import HowItWorks from './HowItWorks.astro';
+import Player from './Player.astro';
+import Economy from './Economy.astro';
+import Social from './Social.astro';
+import Directory from './Directory.astro';
+import Developers from './Developers.astro';
+import Closing from './Closing.astro';
+import { useTranslations } from '../i18n/index.js';
+import { organization, website, software } from '../lib/seo.js';
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const site = Astro.site;
+const jsonld = [organization(site), website(site, lang, t.meta.description), software(site, lang, t.meta.description)];
+---
+<Base lang={lang} title={t.meta.title} description={t.meta.description} jsonld={jsonld}>
+  <Hero t={t} lang={lang} />
+  <StickyNav t={t.nav} lang={lang} />
+  <main>
+    <SdkBar t={t.sdkBar} />
+    <Marquee t={t.marquee} />
+    <Showcase t={t.showcase} />
+    <HowItWorks t={t.how} />
+    <Player t={t.player} />
+    <Economy t={t.economy} />
+    <Social t={t.social} />
+    <Directory t={t.directory} />
+    <Developers t={t.developers} />
+  </main>
+  <Closing t={t.closing} lang={lang} />
+  <script>
+    import '../scripts/hero.js';
+    import '../scripts/sections.js';
+    import '../scripts/wordmark.js';
+  </script>
+</Base>

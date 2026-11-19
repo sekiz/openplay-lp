@@ -1,0 +1,69 @@
+---
+const { t } = Astro.props;
+---
+<section id="platform"><div class="wrap"><div class="head c"><div class="eyebrow"><i></i>{t.studio_panel}</div><h2>{t.what_happens_in_the_game}<br><em>{t.shows_up_in_the_panel}</em></h2><p class="sub">{t.ada_crosses_the_finish_line}</p></div></div><div class="frame threaded" data-stack="skip">
+    <div class="fbar"><span>{t.a_reward_traced_from_game}</span><button class="replay" type="button"><svg viewBox="0 0 12 12"><path d="M2 6a4 4 0 104-4H3.5M5 .5L3.5 2 5 3.500" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>{t.replay}</button><span class="tag">{t.sample_screen}</span></div>
+    <div class="fbody">
+      <div class="left">
+        <div class="cap"><span>{t.in_the_game}</span><span>{t.coast_rally}</span></div>
+        <div class="game">
+          <img class="bg" src="/assets/race-game.webp" alt="">
+          <div class="hud"><span>{t.ada_level_12}</span><span><i class="coin"></i>{t.n1_370} <i class="gem"></i>24</span></div>
+          <div class="reward" data-node="h1">
+            <span class="obj"><svg><use href="#pusula"/></svg></span>
+            <span><small><svg class="ic" style="width:12px;height:12px"><use href="#i-check"/></svg>{t.stage_complete}</small><b>{t.sprint_badge}</b><span class="pl">{t.rare_badge} <i class="coin"></i>{t.n120_coins}</span></span>
+            <span class="go">{t.next_stage}</span>
+          </div>
+          <div class="gname">{t.coast_stage_part_3}</div>
+        </div>
+        <div class="trace">
+          <div class="tr"><span class="n">1</span><span><b>{t.stage_complete}</b><small>{t.coast_stage_finish_game_client}</small></span><span class="t">{t.time_step_a}</span></div>
+          <div class="tr"><span class="n">2</span><span><b>{t.reward_granted}</b><small>{t.n1_sprint_badge_and_120}</small></span><span class="t">{t.time_step_a}</span></div>
+          <div class="tr on"><span class="n">3</span><span><b>{t.added_to_inventory}</b><small>{t.ada_car_number_7}</small></span><span class="t">{t.time_step_b}</span></div>
+          <div class="tr"><span class="n">4</span><span><b>{t.balance_updated}</b><small>{t.n1_250_1_370_coins}</small></span><span class="t">{t.time_step_b}</span></div>
+        </div>
+      </div>
+
+      <div class="dash">
+        <div class="side">
+          <span class="g"><svg><use href="#pusula"/></svg></span>
+          <a><svg><use href="#i-home"/></svg></a>
+          <a class="on"><svg><use href="#i-user"/></svg></a>
+          <hr>
+          <a><svg><use href="#i-box"/></svg></a>
+          <a><svg><use href="#i-cart"/></svg></a>
+          <a><svg><use href="#i-gift"/></svg></a>
+          <a><svg><use href="#i-trophy"/></svg></a>
+          <a><svg><use href="#i-layers"/></svg></a>
+          <hr>
+          <a><svg><use href="#i-plug"/></svg></a>
+          <a><svg><use href="#i-hook"/></svg></a>
+          <a><svg><use href="#i-key"/></svg></a>
+        </div>
+        <div class="main">
+          <div class="crumb">{t.sample_studio} <svg class="ic" style="width:12px;height:12px"><use href="#i-chev"/></svg> {t.coast_rally} <svg class="ic" style="width:12px;height:12px"><use href="#i-chev"/></svg> {t.players} <svg class="ic" style="width:12px;height:12px"><use href="#i-chev"/></svg> <b>Ada</b><span class="sp"><span class="kbd">{t.find_player}</span><span class="kbd">{t.grant_item}</span></span></div>
+          <div class="ph">
+            <span class="av">A</span>
+            <div><div class="n">Ada <span class="badge">{t.online}</span></div><small>{t.google_account_linked_last_seen}</small></div>
+            <div class="stats"><div class="stat"><small>{t.coins}</small><b class="num"><i class="coin"></i>{t.n1_370}</b></div><div class="stat"><small>{t.gems}</small><b class="num"><i class="gem"></i>24</b></div></div>
+          </div>
+          <div class="tabs"><span>{t.profile}</span><span class="on">{t.inventory} <i>4</i></span><span>{t.balance}</span><span>{t.rewards}</span><span>{t.characters} <i>2</i></span><span>{t.sessions}</span></div>
+          <div class="tb">
+            <div class="r h"><span></span><span>{t.item}</span><span>{t.rarity}</span><span>{t.source}</span><span style="text-align:right">{t.time}</span></div>
+            <div class="r hl"><span class="it" data-node="h2"><svg><use href="#pusula"/></svg></span><span class="nm">{t.sprint_badge}<span class="new">{t.new}</span><small>{t.id_sprint_badge}</small></span><span class="rar n">{t.rare}</span><span class="src">{t.reward}<small>{t.coast_stage_finish}</small></span><span class="tm">{t.time_event}</span></div>
+            <div class="r"><span class="it"><svg><use href="#yelken"/></svg></span><span class="nm">{t.rain_tire_2}<small>{t.id_rain_tire}</small></span><span class="rar s">{t.common}</span><span class="src">{t.store}<small>{t.n300_coins}</small></span><span class="tm">{t.yesterday}</span></div>
+            <div class="r"><span class="it"><svg><use href="#harita"/></svg></span><span class="nm">{t.coast_stage_pace_notes}<small>{t.id_pace_notes}</small></span><span class="rar s">{t.common}</span><span class="src">{t.reward}<small>{t.first_stage}</small></span><span class="tm">{t.nov_5}</span></div>
+            <div class="r"><span class="it"><svg><use href="#takim"/></svg></span><span class="nm">{t.repair_kit_5}<small>{t.id_repair_kit}</small></span><span class="rar s">{t.common}</span><span class="src">{t.store}<small>{t.service_pack}</small></span><span class="tm">{t.nov_3}</span></div>
+          </div>
+          <div class="tfoot"><span>{t.n4_item_types_9_items}</span><div><span class="kbd">{t.view_history}</span><span class="kbd">{t.export}</span></div></div>
+          <div class="act">
+            <div class="lbl">{t.recent_activity} <span>{t.today}</span></div>
+            <div class="ar"><span class="pos">{t.n120_coins}</span><span>{t.coast_stage_finish_reward}</span><span class="tm">{t.time_event}</span></div>
+            <div class="ar"><span class="mono" style="font-size:12px;color:var(--ink2)">{t.save_1}</span><span>{t.cloud_save_written_48_kb}</span><span class="tm">{t.time_event}</span></div>
+          </div>
+        </div>
+      </div>
+      <svg class="thread"></svg>
+    </div>
+  </div>
+  </section>

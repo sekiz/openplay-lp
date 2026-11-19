@@ -1,0 +1,84 @@
+---
+import { getScenes } from '../data/scenes.js';
+import { localePath } from '../i18n/index.js';
+import LangSwitch from './LangSwitch.astro';
+const { t, lang } = Astro.props;
+const scenes = getScenes(t);
+const h = t.hero;
+const arrow = '<svg viewBox="0 0 12 12"><path d="M3 9l6-6M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const mark = '<svg viewBox="0 0 44 28"><path fill="currentColor" d="M1 2q0-2 2-1l17 11q2 1 0 3L3 26q-2 1-2-1zm21 0q0-2 2-1l17 11q2 1 0 3L24 26q-2 1-2-1z"/></svg>';
+const filters = '<defs><filter id="bl22" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter><filter id="bl12" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter><filter id="bl5" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter></defs>';
+const tabIcons = {
+  reward: '<svg viewBox="0 0 20 20"><path d="M6 3h8v5a4 4 0 01-8 0z M6 4.5H3c0 3 1 4 3.2 4.3 M14 4.5h3c0 3-1 4-3.2 4.3 M10 12v3 M7 17h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  'cloud-save': '<svg viewBox="0 0 20 20"><path d="M5.5 15.5a3.8 3.8 0 01-.5-7.5 5 5 0 019.6 1.2 3.2 3.2 0 01-.4 6.3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  store: '<svg viewBox="0 0 20 20"><path d="M3 8h14v8H3zM2 4h16l-1 4H3zM8 16v-4h4v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  account: '<svg viewBox="0 0 20 20"><circle cx="10" cy="7" r="3.200" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 17a6 6 0 0112 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  realtime: '<svg viewBox="0 0 20 20"><path d="M11 2L5 11h4l-1 7 7-10h-4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  trophy: '<svg viewBox="0 0 20 20"><path d="M4 16v-5M8 16V7M12 16v-7M16 16V4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+};
+---
+<header class="hx boot" id="hero" aria-label="OpenPlay">
+  <div class="scenes" aria-hidden="true">
+    {scenes.map((s, i) => (
+      <div class:list={['scene', { on: i === 0, flat: s.flat }]}>
+        <div class="ly" style="--d:.3"><div class="lyi">
+          <img class="bg" src={`/assets/${s.id}-bg.webp`} alt="" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'} />
+          {s.flat ? <p class="hbig hbig3" aria-hidden="true">{h.h1lines.map((x) => <span>{x}</span>)}</p> : <p class="hbig" aria-hidden="true"><span>{h.h1a}</span><span>{h.h1b}</span></p>}
+          {s.flat ? (
+            <Fragment>
+              <img class="occ" src={`/assets/${s.id}-occ.webp`} alt="" loading="lazy" />
+              <div class={`fx fx-${s.id}`}></div>
+              <div class={`subw s-${s.id}`} style={`left:${s.sub.x}px;top:${s.sub.y}px;width:${s.sub.w}px;height:${s.sub.h}px`}></div>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <div class={`fx fx-${s.id}`}></div>
+              <div class={`subw s-${s.id}`} style={`left:${s.sub.x}px;top:${s.sub.y}px;width:${s.sub.w}px;height:${s.sub.h}px`}>
+                <svg class="shd" viewBox={s.sub.vb} fill="#0d0703" set:html={filters + s.shadow}></svg>
+                <img class="sub" src={`/assets/${s.id}-sub.webp`} alt="" />
+              </div>
+            </Fragment>
+          )}
+        </div></div>
+        {!s.flat && (
+        <div class="ly" style="--d:1.7"><div class="lyi">
+          <img class="fgi" style={`left:${s.fg.x}px;top:${s.fg.y}px;width:${s.fg.w}px`} src={`/assets/${s.id}-fg.webp`} alt="" loading="lazy" />
+        </div></div>
+        )}
+      </div>
+    ))}
+  </div>
+  <canvas class="motes" aria-hidden="true"></canvas>
+  <div class="tints" aria-hidden="true">{scenes.map((s, i) => <i class:list={{ on: i === 0 }} style={`--tint:${s.tint}`}></i>)}</div>
+  <div class="shade"></div>
+
+  <nav class="hnav hi" style="--o:0" aria-label={h.navLabel}>
+    <a class="hlogo" href={localePath(lang)}><Fragment set:html={mark} />OpenPlay</a>
+    <a href="#platform">{h.platform}</a><a href="#how-it-works">{h.how}</a><a href="#developers">{h.developers}</a><a href={localePath(lang, '/blog/')}>{h.blog}</a>
+    <span class="r"><a href="#developers">{h.docs} <Fragment set:html={arrow} /></a><LangSwitch lang={lang} /></span>
+  </nav>
+
+  <div class="htext">
+    <div class="hi" style="--o:1"><span id="hk">{scenes[0].game}</span></div>
+    <h1><span class="ln"><span style="--o:2">{h.h1a}</span></span><span class="ln"><span style="--o:3">{h.h1b}</span></span></h1>
+    <p class="hi" id="hp" style="--o:5">{scenes[0].copy}</p>
+    <div class="hcta hi" style="--o:6">
+      <a class="hb" href="#developers">{h.ctaPrimary} <Fragment set:html={arrow} /></a>
+      <a class="hl" data-go="#platform">{h.ctaSecondary}</a>
+    </div>
+  </div>
+
+  <svg class="pin" aria-hidden="true"><path id="pinl" d="" fill="none" stroke-width="2" stroke-linecap="round" /><g id="pind"><circle class="ring" r="7" fill="none" stroke="#FFF4DB" stroke-width="2" /><circle r="5" fill="#FFF4DB" /></g></svg>
+  <div class="callout" id="callout" aria-live="polite">
+    <span class="ci" id="c-ic"></span>
+    <span class="ct"><b id="c-t"></b><small id="c-s"></small></span>
+    <a class="cg" data-go="#platform" role="button" tabindex="0" aria-label={h.seeInPanel}>{h.seeInPanel} <svg viewBox="0 0 12 12"><path d="M6 2v8M2.5 6.5L6 10l3.5-3.500" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+  </div>
+
+  <div class="htabs hi" style="--o:8" role="group" aria-label={h.tabsLabel}>
+    {scenes.map((s, i) => (
+      <button class:list={['htab', { on: i === 0 }]} aria-pressed={i === 0 ? 'true' : 'false'}><Fragment set:html={tabIcons[s.icon]} />{s.tab}<i><u></u></i></button>
+    ))}
+  </div>
+  <script type="application/json" id="scene-data" set:html={JSON.stringify(scenes.map(({ shadow, ...r }) => r))}></script>
+</header>

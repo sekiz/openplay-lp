@@ -1,0 +1,11 @@
+---
+// Dil değiştirici: her dil için aynı sayfanın o dildeki adresine gider.
+import { locales, localePath, useTranslations } from '../i18n/index.js';
+const { lang, path = '/' } = Astro.props;
+const label = useTranslations(lang).meta.langLabel;
+---
+<span class="langs" role="group" aria-label={label}>
+  {locales.map((l) => (
+    <a href={localePath(l, path)} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined} title={useTranslations(l).meta.langName}>{l.toUpperCase()}</a>
+  ))}
+</span>

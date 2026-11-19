@@ -1,0 +1,106 @@
+/* Duyarlı yerleşim: masaüstü düzeni base.css'te, burada tablet ve mobil kırılımları var. */
+html{overflow-x:clip;scroll-behavior:smooth}
+.tl,.rec em{white-space:nowrap}
+[id]{scroll-margin-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{width:auto;min-width:320px}
+img{max-width:100%}
+.wrap{width:min(1120px,calc(100% - 40px))}
+section{padding:clamp(72px,9vw,120px) 0}
+h2{font-size:clamp(30px,4.6vw,44px)}
+.sub{font-size:clamp(15.5px,1.4vw,17px)}
+.head{margin-bottom:clamp(32px,4vw,48px)}
+.code pre{overflow-x:auto}
+#platform{padding:clamp(64px,8vw,104px) 0 clamp(40px,5vw,60px)}
+#platform .frame,.frame{width:min(1200px,calc(100% - 32px))}
+.sdkbar .wrap{width:min(1296px,calc(100% - 40px))}
+.cbox h2{font-size:clamp(32px,5.4vw,56px)}
+.stick .wrap{width:min(1120px,calc(100% - 24px))}
+
+@media (max-width:1100px){
+  .fbody{grid-template-columns:1fr}
+  .left{border-right:0;border-bottom:1px solid var(--line);border-radius:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 24px;align-items:start}
+  .left .cap{grid-column:1/-1}
+  .trace{margin-top:0}
+  .split{grid-template-columns:1fr;gap:44px}
+  .trio{gap:28px}
+  .dg{grid-template-columns:repeat(3,1fr)}
+  .dg>div:nth-child(n+4){border-top:1px solid var(--line)}
+  .dg>div:nth-child(4){border-left:0}
+  .sec{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr 1fr}
+  .bento .bc:last-child{grid-column:1/-1}
+  .bento .bc:last-child .lock{max-width:360px;margin:0 auto}
+}
+@media (max-width:899px){
+  .stick nav ul{display:none}
+  .steps{grid-template-columns:1fr}
+  .step .ui{height:auto;min-height:190px}
+  .trio{grid-template-columns:1fr;gap:72px;margin-top:64px!important}
+  .ec .stg{left:74px}
+  .three{grid-template-columns:1fr;margin-top:48px}
+  .tc p{min-height:0}
+  .two{grid-template-columns:1fr}
+  .foot{flex-direction:column;align-items:flex-start;gap:12px}
+  .foot div{flex-wrap:wrap;gap:10px 22px}
+  footer{grid-template-columns:1fr;gap:20px}
+  footer ul{flex-wrap:wrap;gap:10px 22px}
+  .cbox{padding:64px 22px 68px;border-radius:22px}
+  .cbox .cta{flex-wrap:wrap}
+  .cbox .alt{flex-wrap:wrap;gap:10px 22px}
+  .sdkbar .wrap{height:auto;flex-wrap:wrap;gap:10px 22px;padding:14px 0}
+  .rec{margin-left:0;width:100%}
+  .rec em{margin-left:auto}
+}
+@media (max-width:720px){
+  .left{display:block}
+  .trace{margin-top:16px}
+  .game{height:auto;aspect-ratio:368/264}
+  .fbar>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .dash{grid-template-columns:1fr}
+  .side{display:none}
+  .crumb{padding:0 14px;overflow:hidden;white-space:nowrap}
+  .crumb .sp{display:none}
+  .ph{flex-wrap:wrap;padding:16px 14px 12px}
+  .stats{margin-left:0;width:100%}
+  .stat{flex:1}
+  .tabs{padding:0 14px;gap:16px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+  .tb .r,.tb .r.h{grid-template-columns:36px minmax(0,1fr) auto;padding-left:14px;padding-right:14px}
+  .tb .r>.rar,.tb .r>.src,.tb .r.h>span:nth-child(3),.tb .r.h>span:nth-child(4){display:none}
+  .tfoot{padding:10px 14px;flex-wrap:wrap;gap:8px}
+  .act{margin:4px 14px 16px}
+  .act .ar{grid-template-columns:76px minmax(0,1fr) auto}
+  .stage{padding:14px;border-radius:18px}
+  .pg{grid-template-columns:1fr}
+  .pg>div:first-child{border-right:0;border-bottom:1px solid var(--line)}
+  .saves{grid-template-columns:1fr}
+  .profile .ph .tag{display:none}
+  .bento{grid-template-columns:1fr}
+  .dg{grid-template-columns:1fr 1fr}
+  .dg>div:nth-child(n+3){border-top:1px solid var(--line)}
+  .dg>div:nth-child(odd){border-left:0}
+  .dg>div:nth-child(4){border-left:1px solid var(--line)}
+  .dg .gs{min-height:36px}
+  .sdk{padding:20px}
+  .sdk .ft{flex-wrap:wrap}
+  .paths{padding:4px 16px}
+  .paths a{display:block;position:relative;padding:14px 22px 14px 46px}
+  .paths a b{display:block}
+  .paths .i{position:absolute;left:0;top:14px}
+  .paths a>svg{position:absolute;right:0;top:22px}
+  .mcp{padding:20px}
+  .code,.term{font-size:11.5px}
+  .mini{font-size:12.5px}
+  .irow b{font-size:16px}
+}
+@media (max-width:520px){
+  .wrap{width:calc(100% - 32px)}
+  .stick nav .r>span:not(.langs){display:none}
+  .stick nav{padding:0 8px 0 16px}
+  .dg{grid-template-columns:1fr}
+  .dg>div+div{border-left:0!important;border-top:1px solid var(--line)}
+  .kv{font-size:12.5px}
+  .chat{font-size:13px}
+  .lb .r small{display:none}
+  .replay{font-size:0;padding:5px 7px;gap:0}
+}

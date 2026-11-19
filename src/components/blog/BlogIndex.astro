@@ -1,0 +1,54 @@
+---
+// Blog dizini: öne çıkan yazı ve liste. Blog şeması (JSON-LD) ile birlikte.
+import Base from '../../layouts/Base.astro';
+import BlogHeader from './BlogHeader.astro';
+import Closing from '../Closing.astro';
+import '../../styles/blog.css';
+import { useTranslations, localeTags } from '../../i18n/index.js';
+import { getPosts } from '../../lib/blog.js';
+import { organization, blogList, breadcrumbs } from '../../lib/seo.js';
+const { lang } = Astro.props;
+const t = useTranslations(lang), b = t.blog;
+const posts = await getPosts(lang);
+const [first, ...rest] = posts;
+const fmt = (d) => d.toLocaleDateString(localeTags[lang], { year: 'numeric', month: 'long', day: 'numeric' });
+const jsonld = [organization(Astro.site), blogList(Astro.site, lang, b.title, b.description, posts), breadcrumbs(Astro.site, [[b.home, '/'], [b.navLabel, '/blog/']])];
+---
+<Base lang={lang} title={b.title} description={b.description} path="/blog/" jsonld={jsonld}>
+  <div class="bl-top">
+    <BlogHeader t={t} lang={lang} path="/blog/" />
+    <div class="bw bl-hero">
+      <p class="eyebrow"><i></i>{b.eyebrow}</p>
+      <h1>{b.h1a}<br /><em>{b.h1b}</em></h1>
+      <p class="bl-lede">{b.lede}</p>
+    </div>
+  </div>
+  <main class="bl-main">
+    <div class="bw">
+      {first && (
+        <a class="bl-feat" href={first.url}>
+          <span class="bl-tag">{b.featured}</span>
+          <h2>{first.data.title}</h2>
+          <p>{first.data.description}</p>
+          <span class="bl-meta"><time datetime={first.data.pubDate.toISOString()}>{fmt(first.data.pubDate)}</time><span>{first.minutes} {b.minRead}</span>{first.fallback && <span lang={lang}>{b.onlyEn}</span>}</span>
+        </a>
+      )}
+      <ol class="bl-list">
+        {rest.map((p, i) => (
+          <li>
+            <a href={p.url}>
+              <span class="n">{String(i + 2).padStart(2, '0')}</span>
+              <span class="tx"><span class="tags">{p.data.tags.join(', ')}</span><h2>{p.data.title}</h2><p>{p.data.description}</p></span>
+              <span class="bl-meta"><time datetime={p.data.pubDate.toISOString()}>{fmt(p.data.pubDate)}</time><span>{p.minutes} {b.minRead}</span></span>
+            </a>
+          </li>
+        ))}
+      </ol>
+      <p class="bl-rss"><a href="/rss.xml">{b.rss}</a></p>
+    </div>
+  </main>
+  <script>
+    import '../../scripts/wordmark.js';
+  </script>
+  <Closing t={t.closing} lang={lang} path="/blog/" />
+</Base>
